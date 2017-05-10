@@ -31,4 +31,11 @@ def create_app(config_name):
 
     from app import models
 
+    # import blueprints
+    from .auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint, url_prefix='/auth')
+
+    from .dictionary import dictionary as dic_blueprint
+    app.register_blueprint(dic_blueprint)
+
     return app
