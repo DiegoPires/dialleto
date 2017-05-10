@@ -10,13 +10,6 @@ body, h1, h2, h3 {
     font-weight: 700;
 }
 
-a, .navbar-default .navbar-brand, .navbar-default .navbar-nav>li>a {
-  color: #aec251;
-}
-
-a:hover, .navbar-default .navbar-brand:hover, .navbar-default .navbar-nav>li>a:hover {
-  color: #687430;
-}
 
 footer {
     padding: 50px 0;
