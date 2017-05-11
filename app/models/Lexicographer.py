@@ -4,6 +4,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from app import db, login_manager
 from datetime import datetime
 
+from .Word import Word
+
 class Lexicographer(UserMixin, db.Model):
     # Create an Lexicographer table
 
@@ -41,7 +43,7 @@ class Lexicographer(UserMixin, db.Model):
         return '<Lexicographer: {}>'.format(self.username)
 
 
-# Set up user_loader
-@login_manager.user_loader
-def load_user(user_id):
-    return Lexicographer.query.get(int(user_id))
+    # Set up user_loader
+    @login_manager.user_loader
+    def load_user(user_id):
+        return Lexicographer.query.get(int(user_id))

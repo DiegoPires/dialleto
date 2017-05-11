@@ -1,6 +1,9 @@
 from app import db
 from datetime import datetime
 
+# from .Lexicographer import Lexicographer
+# from .Language import Language
+
 class Word(db.Model):
     # Create a Word table
 

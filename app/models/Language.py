@@ -1,6 +1,8 @@
 from app import db
 from datetime import datetime
 
+# from .Word import Word
+
 class Language(db.Model):
     # Create a Language table
 
