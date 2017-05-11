@@ -11,7 +11,7 @@ class Word(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     word = db.Column(db.String(60), unique=True)
-    definition = db.Column(db.String(200))
+    definition = db.Column(db.String(2000))
 
     created_by_id = db.Column(db.Integer, db.ForeignKey('lexicographers.id'))
     language_id = db.Column(db.Integer, db.ForeignKey('languages.id'))

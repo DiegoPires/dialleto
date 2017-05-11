@@ -9,9 +9,12 @@
             <div class="col-lg-12">
                 <div class="intro-message">
                     <h1>Dialleto</h1>
-                    <h3>A multilingual dictionary of slang and regionalisms
-!</h3>
+                    <h3>A multilingual dictionary of slang and regionalisms!</h3>
                     <hr class="intro-divider">
+                    <ul>
+                        {% for word in words %}
+                            <li>{{ word.word}}: {{ word.definition }}</li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>

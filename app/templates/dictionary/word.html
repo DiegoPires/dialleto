@@ -1,0 +1,12 @@
+<!-- app/templates/home/index.html -->
+
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+<div class="intro-header">
+    <div class="container">
+     <h1>Word: {{ word.word }}</h1>
+        <p>Definition: {{ word.definition }}</p>
+    </div>
+</div>
+{% endblock %}
