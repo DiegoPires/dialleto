@@ -10,26 +10,26 @@ from .forms import WordForm
 
 @dictionary.route('/')
 def index():
-    """
-    Render the homepage template on the / route
-    """
 
+    word = Word.query.filter_by(word="Dialleto").first()
     words = Word.query.all()
 
     return render_template('dictionary/index.html',
                            words=words,
-                           title="Welcome")
+                           word=word,
+                           title="Dialleto")
 
-@dictionary.route('/word/<string:definition>')
-def word(definition):
+@dictionary.route('/word/<string:term>')
+def word(term):
 
-    word = Word.query.filter_by(definition=definition).first
+    word = Word.query.filter(Word.word.ilike(term)).first()
 
     if word is None:
         abort(404)
 
     return render_template('dictionary/word.html',
                            word=word,
+                           term=term,
                            title="Word")
 
 # @dictionary.route('/word/add', methods=['GET', 'POST'])

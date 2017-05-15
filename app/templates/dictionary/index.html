@@ -11,14 +11,21 @@
                     <h1>Dialleto</h1>
                     <h3>A multilingual dictionary of slang and regionalisms!</h3>
                     <hr class="intro-divider">
-                    <ul>
-                        {% for word in words %}
-                            <li>{{ word.word}}: {{ word.definition }}</li>
-                        {% endfor %}
-                    </ul>
+                    <p>{{ word.word}}: {{ word.definition }}</p>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<br />
+<div class="container">
+    <ul>
+        {% for word in words %}
+        <li>
+            <a href="{{ url_for('dictionary.word', term=word.word) }}">{{ word.word }}</a>
+            <p>{{ word.definition }}</p>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock %}
