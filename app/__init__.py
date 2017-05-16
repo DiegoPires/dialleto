@@ -31,7 +31,10 @@ def create_app(config_name):
 
     migrate = Migrate(app, db)
 
-    from app.models import Language, Word, Lexicographer
+    from app.models.Rating import RatingType
+    from app.models.Text import TextType
+
+    from app.models import Language, Word, Lexicographer, BaseMixin, Definition, Rating, Text, Word
 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 

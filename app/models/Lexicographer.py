@@ -2,18 +2,10 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import db, login_manager
-from datetime import datetime
+from .BaseMixin import BaseMixin
 
-from .Word import Word
+class Lexicographer(UserMixin, BaseMixin,  db.Model):
 
-class Lexicographer(UserMixin, db.Model):
-    # Create an Lexicographer table
-
-    # Ensures table will be named in plural and not in singular
-    # as is the name of the model
-    __tablename__ = 'lexicographers'
-
-    id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(60), index=True, unique=True)
     username = db.Column(db.String(60), index=True, unique=True)
     first_name = db.Column(db.String(60), index=True)
@@ -21,8 +13,10 @@ class Lexicographer(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
 
     words = db.relationship('Word', backref='lexicographer', lazy='dynamic')
-
-    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    ratings = db.relationship('Rating', backref='lexicographer', lazy='dynamic')
+    languages = db.relationship('Language', backref='lexicographer', lazy='dynamic')
+    texts = db.relationship('Text', backref='lexicographer', lazy='dynamic')
+    words = db.relationship('Word', backref='lexicographer', lazy='dynamic')
 
     @property
     def password(self):
@@ -40,7 +34,6 @@ class Lexicographer(UserMixin, db.Model):
 
     def __repr__(self):
         return '<Lexicographer: {}>'.format(self.username)
-
 
     # Set up user_loader
     @login_manager.user_loader

@@ -1,21 +1,15 @@
 from app import db
-from datetime import datetime
+from .BaseMixin import BaseMixin
 
-# from .Word import Word
+class Language(BaseMixin, db.Model):
 
-class Language(db.Model):
-    # Create a Language table
-
-    __tablename__ = "languages"
-
-    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(60), unique=True)
     code = db.Column(db.String(6), unique=True)
 
-    words = db.relationship('Word', backref='language',
-                                lazy='dynamic')
+    #parent_id = db.column(db.Integer, db.ForeignKey('languages.id'))
 
-    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    definitions = db.relationship('Definition', backref='language', lazy='dynamic')
+    #sons = db.relationship('Language', backref='language', lazy='dynamic')
 
     def __repr__(self):
         return '<Language: {}>'.format(self.name)
