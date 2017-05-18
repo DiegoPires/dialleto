@@ -5,14 +5,16 @@ from flask_login import current_user, login_required
 
 from . import dictionary
 from ..models.Word import Word
+from ..models.Text import Text
+
 from .. import db
 from .forms import WordForm
 
 @dictionary.route('/')
 def index():
 
-    word = Word.query.filter_by(word="Dialleto").first()
-    words = Word.query.all()
+    word = Word.query.get(1)
+    words = Word.query.join(Text).all()
 
     return render_template('dictionary/index.html',
                            words=words,

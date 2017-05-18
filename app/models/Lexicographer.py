@@ -12,11 +12,11 @@ class Lexicographer(UserMixin, BaseMixin,  db.Model):
     last_name = db.Column(db.String(60), index=True)
     password_hash = db.Column(db.String(128), nullable=False)
 
-    words = db.relationship('Word', backref='lexicographer', lazy='dynamic')
-    ratings = db.relationship('Rating', backref='lexicographer', lazy='dynamic')
-    languages = db.relationship('Language', backref='lexicographer', lazy='dynamic')
-    texts = db.relationship('Text', backref='lexicographer', lazy='dynamic')
-    words = db.relationship('Word', backref='lexicographer', lazy='dynamic')
+    words = db.relationship('Word', backref='lexicographer_words', lazy='dynamic')
+    ratings = db.relationship('Rating', backref='lexicographer_ratings', lazy='dynamic')
+    languages = db.relationship('Language', backref='lexicographer_languages', lazy='dynamic')
+    texts = db.relationship('Text', backref='lexicographer_texts', lazy='dynamic')
+    words = db.relationship('Word', backref='lexicographer_words', lazy='dynamic')
 
     @property
     def password(self):

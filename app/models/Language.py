@@ -8,8 +8,12 @@ class Language(BaseMixin, db.Model):
 
     parent_id = db.column(db.Integer, db.ForeignKey('languages.id'))
 
-    definitions = db.relationship('Definition', backref='language', lazy='dynamic')
-    sons = db.relationship('Language', backref='language', lazy='dynamic')
+    texts = db.relationship('Text', backref='language_texts', lazy='dynamic')
+    #sons = db.relationship('Language', backref='language_sons', lazy='dynamic')
 
+    #sons = db.relationship('Language',
+    #                       backref=db.backref('language_sons', remote_side='Language.id'),
+     #                      viewonly=True,
+    #                       lazy='dynamic')
     def __repr__(self):
         return '<Language: {}>'.format(self.name)

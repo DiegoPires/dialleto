@@ -18,8 +18,12 @@
 <div class="container">
 
     <h3>Definition: </h3>
+    <ol>
 
-    <p>{{ word.definition }}</p>
+            {% for text in word.texts %}
+            <li>{{ text.text }}</li>
+             {% endfor %}
+                </ol>
 
 </div>
 {% endblock %}

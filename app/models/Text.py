@@ -14,10 +14,13 @@ class Text(BaseMixin, db.Model):
     word_id = db.Column(db.Integer, db.ForeignKey('words.id'))
     language_id = db.Column(db.Integer, db.ForeignKey('languages.id'))
 
-    ratings = db.relationship('Rating', backref='text', lazy='dynamic')
+    ratings = db.relationship('Rating', backref='text_ratings', lazy='dynamic')
 
     parent_id = db.Column(db.Integer, db.ForeignKey('texts.id'))
-    sons = db.relationship('Text', backref='text', lazy='dynamic')
+    sons = db.relationship('Text',
+                           backref=db.backref('text_sons', remote_side='Text.id'),
+                           viewonly=True,
+                           lazy='dynamic')
 
     def __repr__(self):
         return '<Text: {}>'.format(self.text)
