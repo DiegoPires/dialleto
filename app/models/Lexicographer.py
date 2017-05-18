@@ -6,11 +6,11 @@ from .BaseMixin import BaseMixin
 
 class Lexicographer(UserMixin, BaseMixin,  db.Model):
 
-    email = db.Column(db.String(60), index=True, unique=True)
-    username = db.Column(db.String(60), index=True, unique=True)
+    email = db.Column(db.String(60), index=True, unique=True, nullable=False)
+    username = db.Column(db.String(60), index=True, unique=True, nullable=False)
     first_name = db.Column(db.String(60), index=True)
     last_name = db.Column(db.String(60), index=True)
-    password_hash = db.Column(db.String(128))
+    password_hash = db.Column(db.String(128), nullable=False)
 
     words = db.relationship('Word', backref='lexicographer', lazy='dynamic')
     ratings = db.relationship('Rating', backref='lexicographer', lazy='dynamic')

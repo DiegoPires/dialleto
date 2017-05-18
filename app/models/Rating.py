@@ -10,8 +10,7 @@ class Rating(BaseMixin, db.Model):
 
     rating = db.Column(db.Enum(RatingType))
 
-    definition = db.Column(db.Integer, db.ForeignKey('definitions.id'))
-    lexicographer = db.Column(db.Integer, db.ForeignKey('lexicographers.id'))
+    text_id = db.Column(db.Integer, db.ForeignKey('texts.id'))
 
     def __repr__(self):
         return '<Rating: {}>'.format(self.rating)

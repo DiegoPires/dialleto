@@ -11,7 +11,13 @@ class Text(BaseMixin, db.Model):
     text = db.Column(db.UnicodeText, unique=True)
     type = db.Column(db.Enum(TextType))
 
-    definition = db.Column(db.Integer, db.ForeignKey('definitions.id'))
+    word_id = db.Column(db.Integer, db.ForeignKey('words.id'))
+    language_id = db.Column(db.Integer, db.ForeignKey('languages.id'))
+
+    ratings = db.relationship('Rating', backref='text', lazy='dynamic')
+
+    parent_id = db.Column(db.Integer, db.ForeignKey('texts.id'))
+    sons = db.relationship('Text', backref='text', lazy='dynamic')
 
     def __repr__(self):
         return '<Text: {}>'.format(self.text)
