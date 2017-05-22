@@ -1,10 +1,9 @@
 # app/home/views.py
 
 from flask import abort, flash, redirect, render_template, url_for, g
-from flask_login import current_user, login_required
+from flask_login import login_required
 
 from sqlalchemy.sql import func
-from sqlalchemy.orm import load_only
 
 from . import dictionary
 from ..models.Word import Word
@@ -33,8 +32,8 @@ def search():
 
     words = get_words(g.search_form.word.data)
 
-    if words.count() == 1:
-        return redirect(url_for("word", term=words.first().word))
+    if words.group_by(Word.id).count() == 1:
+        return redirect(url_for("dictionary.word", term=words.first().word))
 
     return render_template('dictionary/search.html',
                            words=words,
@@ -90,6 +89,8 @@ def get_words(term):
         ).limit(1).all()
     # otherwise use our term to search
     else:
-        get_words = Word.query.join(Text).filter(Word.word.ilike(term))
+        get_words = Word.query.select_from(Word)\
+            .join(Text) \
+            .filter(Word.word.ilike(term))
 
     return get_words

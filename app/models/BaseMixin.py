@@ -15,3 +15,4 @@ class BaseMixin(object):
     id = db.Column(db.Integer, primary_key=True)
 
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+

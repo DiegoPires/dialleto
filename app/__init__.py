@@ -10,7 +10,6 @@ from flask_bootstrap import Bootstrap
 # local imports
 from config import app_config
 
-
 # db variable initialization
 db = SQLAlchemy()
 bootstrap = Bootstrap()
@@ -51,4 +50,5 @@ def create_app(config_name):
     from .dictionary import dictionary as dic_blueprint
     app.register_blueprint(dic_blueprint)
     app.before_request(before_request_function)
+
     return app
