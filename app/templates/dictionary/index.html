@@ -17,21 +17,10 @@
         </div>
     </div>
 </div>
-<br />
+
+
+
 <div class="container">
-    <ul>
-        {% for word in words %}
-        <li>
-            <a href="{{ url_for('dictionary.word', term=word.word) }}">{{ word.word }}</a>
-            <ol>
-
-            {% for text in word.texts %}
-            <li>{{ text.text }}</li>
-             {% endfor %}
-                </ol>
-        </li>
-
-        {% endfor %}
-    </ul>
+    {% include '/dictionary/_words.html' %}
 </div>
 {% endblock %}

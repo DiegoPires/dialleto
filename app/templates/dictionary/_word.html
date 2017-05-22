@@ -1,0 +1,26 @@
+<li>
+    <h2><a href="{{ url_for('dictionary.word', term=word.word) }}">{{ word.word }}</a></h2>
+
+    <h3>Definitions</h3>
+    <ol class="definitions">
+        {% for text in word.texts %}
+
+                {% if text.type.name == "Definition" %}
+                    <li>{{ text.text }}</li>
+                {% endif %}
+
+        {% endfor %}
+    </ol>
+
+    <h3>Examples</h3>
+    <ol class="examples">
+    {% for text in word.texts %}
+
+            {% if text.type.name == "Example" %}
+                <li><i>{{ text.text }}</i></li>
+            {% endif %}
+
+    {% endfor %}
+
+    </ol>
+</li>

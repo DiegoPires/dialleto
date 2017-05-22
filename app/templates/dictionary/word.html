@@ -1,29 +1,14 @@
 <!-- app/templates/home/index.html -->
 
 {% extends "base.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}
+    Home
+{% endblock %}
+
 {% block body %}
-<div class="contenu-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="contenu-message">
-                    <h1>{{ word.word }}</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="container">
-
-    <h3>Definition: </h3>
     <ol>
+        {% include '/dictionary/_word.html' %}
+    </ol>
 
-            {% for text in word.texts %}
-            <li>{{ text.text }}</li>
-             {% endfor %}
-                </ol>
-
-</div>
 {% endblock %}

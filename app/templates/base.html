@@ -5,57 +5,74 @@
 <head>
     <title>{{ title }} | Dialleto</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
-    </head>
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
-        <div class="container topnav">
-          <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand topnav" href="{{ url_for('dictionary.index') }}">Dialleto</a>
-          </div>
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav navbar-right">
-                {% if current_user.is_authenticated %}
-                  <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-                  <li><a><i class="fa fa-user"></i>  Hi, {{ current_user.username }}!</a></li>
-                {% else %}
-                  <li><a href="{{ url_for('auth.register') }}">Register</a></li>
-                  <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-                {% endif %}
-              </ul>
-          </div>
+<div class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+    <div class="container topnav">
+
+        <div class="navbar-header">
+            <!--button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button-->
+            <a class="navbar-brand topnav" href="{{ url_for('dictionary.index') }}">Dialleto</a>
         </div>
-    </nav>
-    <div class="wrapper">
-      {% block body %}
-      {% endblock %}
-      <div class="push"></div>
-    </div>
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="list-inline">
-                        <li><a href="{{ url_for('dictionary.index') }}">Home</a></li>
-                        <li class="footer-menu-divider">⋅</li>
-                        {% if current_user.is_authenticated %}
-                            <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-                        {% else %}
-                            <li><a href="{{ url_for('auth.register') }}">Register</a></li>
-                            <li class="footer-menu-divider">⋅</li>
-                            <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-                        {% endif %}
-                    </ul>
-                    <p class="copyright text-muted small">Copyright © 2017. All Rights Reserved</p>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <form class="navbar-form navbar-left" action="{{ url_for('dictionary.search') }}" method="post" name="search">
+                <div class="form-group">
+                    {{ g.search_form.hidden_tag() }}
+                    {{ g.search_form.word(size=20, class="form-control") }}
+                    <button type="submit" class="btn btn-default">Submit</button>
                 </div>
+            </form>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="{{ url_for('dictionary.add_word') }}">ADD WORD</a></li>
+
+                {% if current_user.is_authenticated %}
+                    <li><a><i class="fa fa-user"></i>  Hi, {{ current_user.username }}!</a></li>
+                    <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+                    <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+
+    </div>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="wrapper">
+    {% block body %}
+    {% endblock %}
+    <div class="push"></div>
+</div>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="list-inline">
+                    <li><a href="{{ url_for('dictionary.index') }}">Home</a></li>
+                    <li class="footer-menu-divider">⋅</li>
+
+                    {% if current_user.is_authenticated %}
+                        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+                        <li class="footer-menu-divider">⋅</li>
+                        <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                    {% endif %}
+                </ul>
+                <p class="copyright text-muted small">Copyright © 2017. All Rights Reserved</p>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 </body>
 </html>
