@@ -26,6 +26,7 @@
             <ul>
                 {% for word in words %}
                     <li>
+
                         <h2><a href="{{ url_for('dictionary.word', term=word.word) }}">{{ word.word }}</a></h2>
                         <div class="language"> {{ word.name }} - {{ word.code }}</div>
 
@@ -33,12 +34,16 @@
                             <li>{{ word.text }}</li>
                         </ul>
 
-
-                        <div class="btn btn-group btn-group-sm" role="group" >
-                            <span >{{ word.timestamp.strftime('%d-%m-%Y %H:%M%:%S') }}</span> &nbsp;
-                            <a href="{{ url_for('dictionary.word', term=word.word) }}">More details</a>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="pull-right">
+                                    <div class="btn btn-group btn-group-sm " role="group" >
+                                        <span >{{ word.timestamp.strftime('%d-%m-%Y %H:%M%:%S') }}</span> &nbsp;
+                                        <a href="{{ url_for('dictionary.word', term=word.word) }}">More details</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
                     </li>
                 {% endfor %}
             </ul>
