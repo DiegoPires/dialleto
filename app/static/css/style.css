@@ -59,11 +59,48 @@ p.copyright {
 
 .words{
     padding:10px 0px 10px 0px
-
 }
 
 .words ul{
     list-style: none;
     padding:0px;
     margin: 0px;
+}
+
+.words ul li {
+    background-color: #efefef;
+    padding: 10px 20px;
+    margin: 5px 20px;
+}
+
+.words ul li .language{ font-size:10px;
+    text-align: right; }
+
+.words ul li h2 {
+    border-bottom: 4px solid #cccccc;
+
+}
+.words ul li  h1, h2, h3{
+    padding: 3px;
+    margin: 0px;
+
+}
+
+ul.word {
+    list-style: none;
+}
+
+ ul.word  li  h2{
+    border-bottom: 4px solid #cccccc;
+    padding: 10px;
+    margin: 0px 0px 10px 0px;
+}
+
+ ul.word  li  h3{
+    padding: 10px;
+    margin: 0px 0px 10px 0px;
+}
+
+ ul.word  li  ol{
+    margin: 0px 0px 20px 0px;
 }

@@ -21,6 +21,31 @@
 
 
 <div class="container">
-    {% include '/dictionary/_words.html' %}
+    <div class="words">
+        {% if words != None %}
+            <ul>
+                {% for word in words %}
+                    <li>
+                        <h2><a href="{{ url_for('dictionary.word', term=word.word) }}">{{ word.word }}</a></h2>
+                        <div class="language"> {{ word.name }} - {{ word.code }}</div>
+
+                        <ul class="definitions">
+                            <li>{{ word.text }}</li>
+                        </ul>
+
+
+                        <div class="btn btn-group btn-group-sm" role="group" >
+                            <span >{{ word.timestamp.strftime('%d-%m-%Y %H:%M%:%S') }}</span> &nbsp;
+                            <a href="{{ url_for('dictionary.word', term=word.word) }}">More details</a>
+                        </div>
+
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            No words found
+        {% endif %}
+    </div>
+
 </div>
 {% endblock %}

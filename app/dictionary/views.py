@@ -4,10 +4,13 @@ from flask import abort, flash, redirect, render_template, url_for, g
 from flask_login import login_required
 
 from sqlalchemy.sql import func
+from sqlalchemy import tuple_
+from sqlalchemy.orm import aliased
 
 from . import dictionary
 from ..models.Word import Word
 from ..models.Text import Text
+from ..models.Language import Language
 
 from .. import db
 from .forms import WordForm
@@ -81,16 +84,30 @@ def add_word():
 def get_words(term):
     # if we haven`t received a term to search, randomize the words
     if term is None:
-        get_words = Word.query.join(Text).offset(
+
+        PopularDescription = Text
+        popular_description_id = db.session.query(PopularDescription.id)\
+                        .filter(PopularDescription.word_id == Word.id)\
+                        .limit(1)\
+                        .correlate(Word)\
+                        .as_scalar()
+
+        get_words = db.session.query(Word, Text, Language)\
+            .join(Text, Text.id == popular_description_id)\
+            .join(Language, Language.id == Text.language_id)\
+            .with_entities(Word.id, Word.word, Text.timestamp, Text.text, Language.name, Language.code)\
+            .offset(
             func.floor(
                 func.random() *
                 db.session.query(func.count(Word.id))
             )
-        ).limit(1).all()
+            ).limit(1).all()
+
     # otherwise use our term to search
     else:
         get_words = Word.query.select_from(Word)\
             .join(Text) \
-            .filter(Word.word.ilike(term))
+            .join(Language)\
+            .filter(Word.word.ilike("%" + term + "%"))
 
     return get_words
