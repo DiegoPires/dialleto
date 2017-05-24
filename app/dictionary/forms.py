@@ -8,9 +8,9 @@ class SearchWordForm(FlaskForm):
     word = StringField('Word', validators=[DataRequired()])
 
 class WordForm(FlaskForm):
-    """
-    Form for admin to add or edit a department
-    """
+
     word = StringField('Word', validators=[DataRequired()])
     definition = StringField('Definition', validators=[DataRequired()])
+    example = StringField('Example', validators=[DataRequired()])
+    #language = StringField("Language", validators=[DataRequired()])
     submit = SubmitField('Submit')

@@ -9,7 +9,7 @@ from sqlalchemy.orm import aliased
 
 from . import dictionary
 from ..models.Word import Word
-from ..models.Text import Text
+from ..models.Text import Text, TextType
 from ..models.Language import Language
 
 from .. import db
@@ -53,7 +53,6 @@ def search(term=None,page=1):
                            term=term,
                            title="Dialleto")
 
-
 @dictionary.route('/word/<string:term>')
 def word(term):
 
@@ -75,8 +74,13 @@ def add_word():
 
     if form.validate_on_submit():
 
-        word = Word(word=form.word.data,
-                    definition=form.definition.data)
+        word = Word(word=form.word.data)
+
+        textDescription = Text(text=form.definition.data, type=TextType.Definition, language_id=1)
+        textExample = Text(text=form.example.data, type=TextType.Example, language_id=1)
+
+        word.texts.append(textDescription)
+        word.texts.append(textExample)
 
         try:
 
@@ -84,12 +88,12 @@ def add_word():
             db.session.commit()
             flash("Word added!")
 
+            return redirect(url_for("dictionary.word", term=word.word))
+
         except:
             flash("Error")
 
-        return redirect(url_for("dictionary/word",term=word.word))
-
-    return render_template('dictionary/word.html', title="Add Word")
+    return render_template('dictionary/addword.html', title="Add Word", form=form, add_word=True)
 
 
 def get_words(term):

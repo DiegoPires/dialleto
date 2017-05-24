@@ -8,7 +8,7 @@ class TextType(enum.Enum):
 
 class Text(BaseMixin, db.Model):
 
-    text = db.Column(db.UnicodeText, unique=True)
+    text = db.Column(db.UnicodeText)
     type = db.Column(db.Enum(TextType))
 
     word_id = db.Column(db.Integer, db.ForeignKey('words.id'))
