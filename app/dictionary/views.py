@@ -29,17 +29,28 @@ def index():
                            title="Dialleto")
 
 @dictionary.route('/search', methods=['POST'])
-def search():
-    if not g.search_form.validate_on_submit():
+@dictionary.route('/search/<string:term>/<int:page>', methods=['POST', 'GET'])
+def search(term=None,page=1):
+
+    if term == None:
+        #if not g.search_form.validate_on_submit():
+        #else:
+        term = g.search_form.word.data
+
+    if term == None:
         return redirect(url_for('index'))
 
-    words = get_words(g.search_form.word.data)
+    words = get_words(term)
 
-    if words.group_by(Word.id).count() == 1:
+    if words.count() == 1:
         return redirect(url_for("dictionary.word", term=words.first().word))
 
+    pagination = words.paginate(page, 2, False)
+
     return render_template('dictionary/search.html',
-                           words=words,
+                           words=pagination.items,
+                           pagination=pagination,
+                           term=term,
                            title="Dialleto")
 
 
@@ -83,31 +94,29 @@ def add_word():
 
 def get_words(term):
     # if we haven`t received a term to search, randomize the words
+
+
+    PopularDescription = Text
+    popular_description_id = db.session.query(PopularDescription.id)\
+                    .filter(PopularDescription.word_id == Word.id)\
+                    .limit(1)\
+                    .correlate(Word)\
+                    .as_scalar()
+
+    get_words = db.session.query(Word, Text, Language)\
+        .join(Text, Text.id == popular_description_id)\
+        .join(Language, Language.id == Text.language_id)\
+        .with_entities(Word.id, Word.word, Text.timestamp, Text.text, Language.name, Language.code)
+
     if term is None:
 
-        PopularDescription = Text
-        popular_description_id = db.session.query(PopularDescription.id)\
-                        .filter(PopularDescription.word_id == Word.id)\
-                        .limit(1)\
-                        .correlate(Word)\
-                        .as_scalar()
-
-        get_words = db.session.query(Word, Text, Language)\
-            .join(Text, Text.id == popular_description_id)\
-            .join(Language, Language.id == Text.language_id)\
-            .with_entities(Word.id, Word.word, Text.timestamp, Text.text, Language.name, Language.code)\
-            .offset(
+        return get_words.offset(
             func.floor(
                 func.random() *
                 db.session.query(func.count(Word.id))
             )
-            ).limit(1).all()
+            ).limit(1)
 
     # otherwise use our term to search
     else:
-        get_words = Word.query.select_from(Word)\
-            .join(Text) \
-            .join(Language)\
-            .filter(Word.word.ilike("%" + term + "%"))
-
-    return get_words
+        return get_words.filter(Word.word.ilike("%" + term + "%"))

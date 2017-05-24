@@ -8,6 +8,9 @@ class Config(object):
     """
     # Put any configurations here that are common across all environments
 
+    # pagination
+    POSTS_PER_PAGE = 3
+
 class DevelopmentConfig(Config):
     """
     Development configurations
@@ -17,6 +20,8 @@ class DevelopmentConfig(Config):
 
     DEBUG = True
     SQLALCHEMY_ECHO = True
+
+
 
 class ProductionConfig(Config):
     """

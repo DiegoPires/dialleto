@@ -1,13 +1,51 @@
-<div class="words">
-    {% if words != None %}
+
+{% if words != None %}
+    <div class="words">
         <ul>
             {% for word in words %}
+                <li>
+                    <h2><a href="{{ url_for('dictionary.word', term=word.word) }}">{{ word.word }}</a></h2>
+                    <div class="language"> {{ word.name }} - {{ word.code }}</div>
 
-                {% include '/dictionary/_word.html' %}
+                    <ul class="definitions">
+                        <li>{{ word.text }}</li>
+                    </ul>
 
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="pull-right">
+                                <div class="btn btn-group btn-group-sm " role="group" >
+                                    <span >{{ word.timestamp.strftime('%d-%m-%Y %H:%M%:%S') }}</span> &nbsp;
+                                    <a href="{{ url_for('dictionary.word', term=word.word) }}">More details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
             {% endfor %}
         </ul>
-    {% else %}
-        No words found
-    {% endif %}
 </div>
+        <p>&nbsp;</p>
+        {% if pagination is defined %}
+            <nav aria-label="Page navigation">
+                <ul class="pager">
+
+                    {% if pagination.has_prev %}
+                        <li class="previous"><a href="{{ url_for('dictionary.search', term=term, page=pagination.prev_num) }}">&larr; Newer posts</a></li>
+                    {% else %}
+                        <li class="previous disabled"><a href="#">&larr; Newer posts</a></li>
+                    {% endif %}
+
+                    {% if pagination.has_next %}
+                        <li class="next"><a href="{{ url_for('dictionary.search', term=term, page=pagination.next_num) }}">Older posts &rarr;</a></li>
+                    {% else %}
+                        <li class="next disabled"><a href="#">Older posts &rarr;</a></li>
+                    {% endif %}
+
+                </ul>
+            </nav>
+        {% endif %}
+
+{% else %}
+    No words found
+{% endif %}
