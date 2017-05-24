@@ -1,5 +1,5 @@
 <!-- app/templates/home/index.html -->
-
+{% import "bootstrap/utils.html" as utils %}
 {% extends "base.html" %}
 {% block title %}
     Home
@@ -7,7 +7,10 @@
 
 {% block body %}
 
+
     <div class="container">
+        <br>
+        {{ utils.flashed_messages() }}
         <ul class="word">
             {% include '/dictionary/_word.html' %}
         </ul>

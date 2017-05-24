@@ -15,7 +15,11 @@
                         <div class="col-sm-12">
                             <div class="pull-right">
                                 <div class="btn btn-group btn-group-sm " role="group" >
-                                    <span >{{ word.timestamp.strftime('%d-%m-%Y %H:%M%:%S') }}</span> &nbsp;
+                                    <span >{{ word.timestamp.strftime('%d-%m-%Y %H:%M%:%S') }}</span>
+                                    {{ current_user.id }}-{{ word.created_by_id }}&nbsp;
+                                    {% if word.created_by_id == current_user.id %}
+                                        <a href="{{ url_for('dictionary.delete_word', word=word.word) }}">Delete</a>
+                                    {% endif %}
                                     <a href="{{ url_for('dictionary.word', term=word.word) }}">More details</a>
                                 </div>
                             </div>

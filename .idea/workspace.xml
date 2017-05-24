@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aee3b7f1-fe24-4961-a590-90097f00f8a6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/templates/dictionary/addword.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/dictionary/forms.py" afterPath="$PROJECT_DIR$/app/dictionary/forms.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/dictionary/views.py" afterPath="$PROJECT_DIR$/app/dictionary/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/Text.py" afterPath="$PROJECT_DIR$/app/models/Text.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/base.html" afterPath="$PROJECT_DIR$/app/templates/base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/dictionary/_word.html" afterPath="$PROJECT_DIR$/app/templates/dictionary/_word.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/dictionary/_words.html" afterPath="$PROJECT_DIR$/app/templates/dictionary/_words.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/dictionary/index.html" afterPath="$PROJECT_DIR$/app/templates/dictionary/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/dictionary/word.html" afterPath="$PROJECT_DIR$/app/templates/dictionary/word.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,7 +26,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Text.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Text.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/Text.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
@@ -39,18 +38,48 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="word.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/dictionary/word.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="44" lean-forward="false" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/dictionary/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="93" column="12" lean-forward="false" selection-start-line="93" selection-start-column="12" selection-end-line="93" selection-end-column="12" />
+            <state relative-caret-position="1245">
+              <caret line="114" column="45" lean-forward="false" selection-start-line="114" selection-start-column="45" selection-end-line="114" selection-end-column="45" />
               <folding>
                 <element signature="e#21#90#0" expanded="true" />
-                <element signature="e#454#784#0" expanded="false" />
-                <element signature="e#947#1554#0" expanded="false" />
-                <element signature="e#1618#1883#0" expanded="false" />
-                <element signature="e#2701#3626#0" expanded="false" />
+                <element signature="e#468#798#0" expanded="false" />
+                <element signature="e#961#1568#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_words.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/dictionary/_words.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="21" column="47" lean-forward="true" selection-start-line="19" selection-start-column="36" selection-end-line="21" selection-end-column="47" />
+              <folding>
+                <element signature="e#842#848#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_word.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/templates/dictionary/_word.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="398">
+              <caret line="28" column="8" lean-forward="false" selection-start-line="27" selection-start-column="9" selection-end-line="28" selection-end-column="8" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -58,13 +87,23 @@
       <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="48" column="13" lean-forward="true" selection-start-line="48" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+            <state relative-caret-position="-742">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#2095#2101#1#HTML" expanded="true" />
                 <element signature="e#2109#2115#1#HTML" expanded="true" />
                 <element signature="e#2221#2227#1#HTML" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/dictionary/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="44" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -154,17 +193,17 @@
         <option value="$PROJECT_DIR$/app/templates/dictionary/search.html" />
         <option value="$PROJECT_DIR$/app/models/BaseMixin.py" />
         <option value="$PROJECT_DIR$/app/__init__.py" />
-        <option value="$PROJECT_DIR$/app/templates/dictionary/word.html" />
-        <option value="$PROJECT_DIR$/app/templates/dictionary/_word.html" />
         <option value="$PROJECT_DIR$/app/static/css/style.css" />
         <option value="$PROJECT_DIR$/config.py" />
-        <option value="$PROJECT_DIR$/app/templates/dictionary/index.html" />
-        <option value="$PROJECT_DIR$/app/templates/dictionary/_words.html" />
         <option value="$PROJECT_DIR$/app/templates/dictionary/addword.html" />
         <option value="$PROJECT_DIR$/app/templates/base.html" />
         <option value="$PROJECT_DIR$/app/dictionary/forms.py" />
-        <option value="$PROJECT_DIR$/app/dictionary/views.py" />
         <option value="$PROJECT_DIR$/app/models/Text.py" />
+        <option value="$PROJECT_DIR$/app/templates/dictionary/_words.html" />
+        <option value="$PROJECT_DIR$/app/dictionary/views.py" />
+        <option value="$PROJECT_DIR$/app/templates/dictionary/index.html" />
+        <option value="$PROJECT_DIR$/app/templates/dictionary/word.html" />
+        <option value="$PROJECT_DIR$/app/templates/dictionary/_word.html" />
       </list>
     </option>
   </component>
@@ -326,6 +365,10 @@
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="img">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT USER_OBJECT="Root">
@@ -396,6 +439,7 @@
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/diegosilvapires/Applications/dialleto/app/templates/dictionary/_words.html" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -940,7 +984,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -975,7 +1019,7 @@
         <state relative-caret-position="630">
           <caret line="49" column="4" lean-forward="false" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
           <folding>
-            <element signature="e#41#67#0" expanded="true" />
+            <element signature="e#41#67#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -996,49 +1040,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/dictionary/_words.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="41" column="66" lean-forward="false" selection-start-line="41" selection-start-column="66" selection-end-line="41" selection-end-column="66" />
-          <folding>
-            <element signature="e#760#766#0#HTML" expanded="true" />
-            <element signature="e#1090#1096#1#HTML" expanded="true" />
-            <element signature="e#1399#1405#0#HTML" expanded="true" />
-            <element signature="e#1524#1530#0#HTML" expanded="true" />
-            <element signature="e#1766#1772#0#HTML" expanded="true" />
-            <element signature="e#1880#1886#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/dictionary/search.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="47" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/dictionary/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="42" lean-forward="false" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/dictionary/_word.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/dictionary/word.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1051,37 +1056,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="48" column="13" lean-forward="true" selection-start-line="48" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
-          <folding>
-            <element signature="e#2095#2101#1#HTML" expanded="true" />
-            <element signature="e#2109#2115#1#HTML" expanded="true" />
-            <element signature="e#2221#2227#1#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/dictionary/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/dictionary/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="93" column="12" lean-forward="false" selection-start-line="93" selection-start-column="12" selection-end-line="93" selection-end-column="12" />
-          <folding>
-            <element signature="e#21#90#0" expanded="true" />
-            <element signature="e#454#784#0" expanded="false" />
-            <element signature="e#947#1554#0" expanded="false" />
-            <element signature="e#1618#1883#0" expanded="false" />
-            <element signature="e#2701#3626#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1102,6 +1081,64 @@
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-742">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#2095#2101#1#HTML" expanded="true" />
+            <element signature="e#2109#2115#1#HTML" expanded="true" />
+            <element signature="e#2221#2227#1#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/dictionary/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/dictionary/_words.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="21" column="47" lean-forward="true" selection-start-line="19" selection-start-column="36" selection-end-line="21" selection-end-column="47" />
+          <folding>
+            <element signature="e#842#848#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/dictionary/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1245">
+          <caret line="114" column="45" lean-forward="false" selection-start-line="114" selection-start-column="45" selection-end-line="114" selection-end-column="45" />
+          <folding>
+            <element signature="e#21#90#0" expanded="true" />
+            <element signature="e#468#798#0" expanded="false" />
+            <element signature="e#961#1568#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/dictionary/word.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="44" lean-forward="false" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/dictionary/_word.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="28" column="8" lean-forward="false" selection-start-line="27" selection-start-column="9" selection-end-line="28" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>

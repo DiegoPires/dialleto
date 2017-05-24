@@ -1,7 +1,7 @@
 # app/home/views.py
 
 from flask import abort, flash, redirect, render_template, url_for, g
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 from sqlalchemy.sql import func
 from sqlalchemy import tuple_
@@ -74,7 +74,7 @@ def add_word():
 
     if form.validate_on_submit():
 
-        word = Word(word=form.word.data)
+        word = Word(word=form.word.data, created_by_id=current_user.id)
 
         textDescription = Text(text=form.definition.data, type=TextType.Definition, language_id=1)
         textExample = Text(text=form.example.data, type=TextType.Example, language_id=1)
@@ -96,6 +96,25 @@ def add_word():
     return render_template('dictionary/addword.html', title="Add Word", form=form, add_word=True)
 
 
+@dictionary.route('/word/delete/<string:word>', methods=['GET'])
+@login_required
+def delete_word(word):
+    word = Word.query.filter(Word.word == word).first()
+
+    if word is None:
+        abort(404)
+
+    if word.created_by_id != current_user.id:
+        abort(401)
+
+    db.session.delete(word)
+    db.session.commit()
+    flash('You have successfully deleted the word.')
+
+    # redirect to the roles page
+    return redirect(url_for('dictionary.index'))
+
+
 def get_words(term):
     # if we haven`t received a term to search, randomize the words
 
@@ -110,7 +129,7 @@ def get_words(term):
     get_words = db.session.query(Word, Text, Language)\
         .join(Text, Text.id == popular_description_id)\
         .join(Language, Language.id == Text.language_id)\
-        .with_entities(Word.id, Word.word, Text.timestamp, Text.text, Language.name, Language.code)
+        .with_entities(Word.id, Word.word, Text.timestamp, Text.text, Language.name, Language.code, Word.created_by_id)
 
     if term is None:
 
