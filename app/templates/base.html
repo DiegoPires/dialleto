@@ -8,16 +8,25 @@
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 </head>
 <body>
-<div class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+
+<div class="contenu">
+
+    {% block body %}
+    {% endblock %}
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+
     <div class="container topnav">
 
         <div class="navbar-header">
-            <!--button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-            </button-->
+            </button>
             <a class="navbar-brand topnav" href="{{ url_for('dictionary.index') }}">Dialleto</a>
         </div>
 
@@ -27,53 +36,29 @@
                 <div class="form-group">
                     {{ g.search_form.hidden_tag() }}
                     {{ g.search_form.word(size=20, class="form-control") }}
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-default">Search</button>
                 </div>
             </form>
 
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="{{ url_for('dictionary.add_word') }}">ADD WORD</a></li>
-
                 {% if current_user.is_authenticated %}
-                    <li><a><i class="fa fa-user"></i>  Hi, {{ current_user.username }}!</a></li>
+                    <li><a><i class="fa fa-user"></i> {{ current_user.username }}</a></li>
                     <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
                 {% else %}
                     <li><a href="{{ url_for('auth.register') }}">Register</a></li>
                     <li><a href="{{ url_for('auth.login') }}">Login</a></li>
                 {% endif %}
             </ul>
-        </div>
 
-    </div>
-</div>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<div class="wrapper">
-    {% block body %}
-    {% endblock %}
-    <div class="push"></div>
-</div>
-<p>&nbsp;</p>
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <ul class="list-inline">
-                    <li><a href="{{ url_for('dictionary.index') }}">Home</a></li>
-                    <li class="footer-menu-divider">⋅</li>
-
-                    {% if current_user.is_authenticated %}
-                        <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-                    {% else %}
-                        <li><a href="{{ url_for('auth.register') }}">Register</a></li>
-                        <li class="footer-menu-divider">⋅</li>
-                        <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-                    {% endif %}
-                </ul>
-                <p class="copyright text-muted small">Copyright © 2017. All Rights Reserved</p>
-            </div>
         </div>
     </div>
-</footer>
+</nav>
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+  crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
 </html>

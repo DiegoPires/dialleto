@@ -5,13 +5,9 @@ body, html {
     height: 100%;
 }
 
+.contenu{ margin: 10px 0px;}
 
-footer {
-    padding: 50px 0;
-    background-color: #f8f8f8;
-
-    border:1px solid #e7e7e7;
-}
+.navbar-default{padding:15px;}
 
 p.copyright {
     margin: 15px 0 0;
@@ -67,21 +63,19 @@ p.copyright {
     margin: 0px;
 }
 
+.words .more { font-size: 10px !important; }
+
 .words ul li {
-    background-color: #efefef;
-    padding: 10px 20px;
-    margin: 5px 20px;
+
+    margin-bottom: 30px;
 }
 
-.words ul li .language{ font-size:10px;
-    text-align: right; }
-
-.words ul li h2 {
-    border-bottom: 4px solid #cccccc;
+.words ul li h2, ul.word  li  h2 {
+    border-bottom: 2px solid #cccccc;
 
 }
 .words ul li  h1, h2, h3{
-    padding: 3px;
+    padding: 3px 0px;
     margin: 0px;
 
 }
@@ -90,11 +84,6 @@ ul.word {
     list-style: none;
 }
 
- ul.word  li  h2{
-    border-bottom: 4px solid #cccccc;
-    padding: 10px;
-    margin: 0px 0px 10px 0px;
-}
 
  ul.word  li  h3{
     padding: 10px;
@@ -107,6 +96,17 @@ ul.word {
 
  ul.definitions li{
      margin: 0px;
-     padding: 5px;
+     padding: 5px 0px 0px 0px;
      text-align: justify;
  }
+
+.navbar .divider-vertical {
+    height: 40px;
+    margin: 0 29px;
+    border-left: 1px solid #f2f2f2;
+    border-right: 1px solid #ffffff;
+}
+
+.navbar-fixed-bottom ul li { margin: 0px 10px; }
+
+.pagination-orientation { text-align:center;}
