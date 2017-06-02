@@ -13,6 +13,7 @@ from ..models.Text import Text, TextType
 from ..models.Language import Language
 from ..models.Tag import Tag
 from ..models.TagText import TagText
+from ..models.Lexicographer import Lexicographer
 
 from .. import db
 from .forms import WordForm
@@ -163,10 +164,13 @@ def get_words(term, quantity=1):
                     .correlate(Word)\
                     .as_scalar()
 
-    get_words = db.session.query(Word, Text, Language)\
+
+
+    get_words = db.session.query(Word, Text, Language, Lexicographer)\
         .join(Text, Text.id == popular_description_id)\
         .join(Language, Language.id == Text.language_id)\
-        .with_entities(Word.id, Word.word, Text.timestamp, Text.text, Language.name, Language.code, Word.created_by_id)
+        .join(Lexicographer, Lexicographer.id == Text.created_by_id)\
+        .with_entities(Word.id, Word.word, Text.timestamp, Text.text, Language.name, Language.code, Word.created_by_id, Lexicographer.username)
 
     if term is None:
 

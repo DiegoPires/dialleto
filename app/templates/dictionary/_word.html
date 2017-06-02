@@ -1,4 +1,5 @@
-<li>
+<li class="words">
+
     <h2><a href="{{ url_for('dictionary.word', term=word.word) }}">{{ word.word }}</a></h2>
 
     <h3>Definitions</h3>
@@ -9,21 +10,24 @@
                     <li>
                         <p>{{ text.text }}</p>
 
-
-                        <span><a href="{{ url_for("dictionary.language", language=text.language.name) }}">#{{ text.language.name }}</a></span>
-
-                        {% for tag in text.tags %}
-                            <span><a href="{{ url_for("dictionary.tag", tag=tag.tag) }}">#{{ tag.tag }}</a></span>
-                        {% endfor %}
-
                         {% if text.sons != None %}
-                        <ol class="examples">
-                            {% for example in text.sons %}
-                                <li><i>{{ example.text }}</i></li>
+                            <ol class="examples">
+                                {% for example in text.sons %}
+                                    <li><i>{{ example.text }}</i></li>
+                                {% endfor %}
+                            </ol>
+                        {% endif %}
+
+                        <div class="more">
+                            <span>by {{ text.lexicographer.username }}, {{ text.timestamp.strftime('%d-%m-%Y') }}</span>
+
+                            <span><a href="{{ url_for("dictionary.language", language=text.language.name) }}">#{{ text.language.name }}</a></span>
+
+                            {% for tag in text.tags %}
+                                <span><a href="{{ url_for("dictionary.tag", tag=tag.tag) }}">#{{ tag.tag }}</a></span>
                             {% endfor %}
-                        </ol>
-    {% endif %}
-                        <p><strong>by: {{ text.lexicographer.username }}, {{ text.timestamp.strftime('%d-%m-%Y') }}</strong></p>
+
+                        </div>
                     </li>
                 {% endif %}
 

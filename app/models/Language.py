@@ -6,6 +6,8 @@ class Language(BaseMixin, db.Model):
     name = db.Column(db.String(60), unique=True, nullable=False)
     code = db.Column(db.String(6), unique=True, nullable=False)
 
+    color = db.Column(db.String(7))
+
     parent_id = db.column(db.Integer, db.ForeignKey('languages.id'))
 
     texts = db.relationship('Text', backref='language_texts', lazy='dynamic')
