@@ -11,6 +11,8 @@ from . import dictionary
 from ..models.Word import Word
 from ..models.Text import Text, TextType
 from ..models.Language import Language
+from ..models.Tag import Tag
+from ..models.TagText import TagText
 
 from .. import db
 from .forms import WordForm
@@ -18,14 +20,15 @@ from .forms import WordForm
 @dictionary.route('/')
 def index():
 
-    # take always our first word in the database: Dialleto! (unless you haven't set him up as first)
-    word = Word.query.get(1)
+    words = get_words(None, 2)
 
-    words = get_words(None)
+    languages = Language.query.all()
+    tags = Tag.query.all()
 
     return render_template('dictionary/index.html',
                            words=words,
-                           word=word,
+                           languages=languages,
+                           tags=tags,
                            title="Dialleto")
 
 @dictionary.route('/search', methods=['POST'])
@@ -99,10 +102,7 @@ def add_word():
 @dictionary.route('/word/delete/<string:word>', methods=['GET'])
 @login_required
 def delete_word(word):
-    word = Word.query.filter(Word.word == word).first()
-
-    if word is None:
-        abort(404)
+    word = Word.query.filter(Word.word == word).first_or_404()
 
     if word.created_by_id != current_user.id:
         abort(401)
@@ -115,9 +115,46 @@ def delete_word(word):
     return redirect(url_for('dictionary.index'))
 
 
-def get_words(term):
-    # if we haven`t received a term to search, randomize the words
+@dictionary.route('/random')
+def random_word():
+    words = get_words(None)
+    return redirect(url_for("dictionary.word", term=words.one().word))
 
+
+@dictionary.route('/tag/<string:tag>')
+def tag(tag):
+    words = query_word().filter(Tag.tag == tag)
+    tag=Tag.query.filter(Tag.tag==tag).first_or_404()
+
+    return render_template('dictionary/tag.html',
+                           tag=tag.tag,
+                           words=words,
+                           title="Dialleto")
+
+@dictionary.route('/language/<string:language>')
+def language(language):
+    words = query_word().filter(Language.name == language)
+    language = Language.query.filter(Language.name==language).first_or_404()
+
+    return render_template('dictionary/language.html',
+                           language=language,
+                           words=words,
+                           title="Dialleto")
+
+
+def query_word():
+    words = db.session.query(Word, Text, Language, TagText, Tag) \
+        .join(Text, Text.word_id == Word.id) \
+        .join(Language, Language.id == Text.language_id) \
+        .join(TagText, Text.id == TagText.text_id) \
+        .join(Tag, Tag.id == TagText.tag_id) \
+        .order_by(Text.timestamp.desc()) \
+        .with_entities(Word.id, Word.word, Text.timestamp, Text.text, Language.name, Language.code, Word.created_by_id)
+
+    return words
+
+def get_words(term, quantity=1):
+    # if we haven`t received a term to search, randomize the words
 
     PopularDescription = Text
     popular_description_id = db.session.query(PopularDescription.id)\
@@ -138,7 +175,7 @@ def get_words(term):
                 func.random() *
                 db.session.query(func.count(Word.id))
             )
-            ).limit(1)
+            ).limit(quantity)
 
     # otherwise use our term to search
     else:

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1>#{{ language.name }}</h1>
+        {% include '/dictionary/_words.html' %}
+    </div>
+
+{% endblock %}

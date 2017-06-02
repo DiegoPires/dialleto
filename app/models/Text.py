@@ -1,5 +1,7 @@
 from app import db
 from .BaseMixin import BaseMixin
+from .TagText import TagText
+
 import enum
 
 class TextType(enum.Enum):
@@ -21,6 +23,11 @@ class Text(BaseMixin, db.Model):
                            backref=db.backref('text_sons', remote_side='Text.id'),
                            viewonly=True,
                            lazy='dynamic')
+
+    tags = db.relationship(
+        "Tag",
+        secondary="tag_text",
+        back_populates="texts")
 
     def __repr__(self):
         return '<Text: {}>'.format(self.text)

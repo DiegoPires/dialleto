@@ -7,10 +7,20 @@ body, html {
 
 .contenu{ margin: 10px 0px;}
 
-.navbar-default{padding:15px;}
+.navbar-default{padding:15px; background-color:slategrey;}
+
+.navbar-brand { color:white !important;font-family: "Lucida Bright", Georgia, serif; font-size: 22px; }
+
+.navbar-default .navbar-nav li a { color: white !important; }
 
 p.copyright {
     margin: 15px 0 0;
+}
+
+.menu-right ol{
+    list-style: none;
+    margin: 0px;
+    padding:5px 0px 20px 0px;
 }
 
 .alert-info {
@@ -26,13 +36,13 @@ p.copyright {
 }
 
 .intro-header {
-    padding-top: 50px;
+    padding-top: 20px;
     padding-bottom: 50px;
     text-align: center;
     color: #f8f8f8;
     background: url(../img/intro-bg.jpg) no-repeat center center;
     background-size: cover;
-    height: 300px;
+    height: 250px;
 }
 
 .intro-message {
@@ -49,8 +59,6 @@ p.copyright {
 .intro-message > h3 {
     text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
 }
-
-
 
 
 .words{
@@ -70,24 +78,15 @@ p.copyright {
     margin-bottom: 30px;
 }
 
-.words ul li h2, ul.word  li  h2 {
+.words ul li h2, ul.word  li  h2, menu-right h2 {
     border-bottom: 2px solid #cccccc;
-
-}
-.words ul li  h1, h2, h3{
     padding: 3px 0px;
     margin: 0px;
-
 }
+
 
 ul.word {
     list-style: none;
-}
-
-
- ul.word  li  h3{
-    padding: 10px;
-    margin: 0px 0px 10px 0px;
 }
 
  ul.word  li  ol{
