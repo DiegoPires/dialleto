@@ -39,7 +39,7 @@ def create_app(config_name):
     from app.models.Rating import RatingType
     from app.models.Text import TextType
 
-    from app.models import Language, Word, Lexicographer, BaseMixin, Rating, Text, Word, Tag, TagText
+    from app.models import Language, Word, Lexicographer, BaseMixin, SuperMixin, Rating, Text, Word, Tag, TagText
 
     bootstrap.init_app(app)
 

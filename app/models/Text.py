@@ -24,6 +24,8 @@ class Text(BaseMixin, db.Model):
                            viewonly=True,
                            lazy='dynamic')
 
+    language = db.relationship('Language', back_populates='texts')
+
     tags = db.relationship(
         "Tag",
         secondary="tag_text",

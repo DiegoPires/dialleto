@@ -1,18 +1,20 @@
 from app import db
 from datetime import datetime
 from sqlalchemy.ext.declarative import declared_attr
+from ..models.SuperMixin import SuperMixin
 
-class BaseMixin(object):
+class BaseMixin(SuperMixin):
 
-    @declared_attr
-    def __tablename__(cls):
-        return cls.__name__.lower() + "s"
 
     @declared_attr
     def created_by_id(cls):
         return db.Column(db.Integer, db.ForeignKey('lexicographers.id'))
 
-    id = db.Column(db.Integer, primary_key=True)
+    @declared_attr
+    def lexicographer(cls):
+        return db.relationship("Lexicographer", back_populates=cls.__tablename__)
 
-    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+
 

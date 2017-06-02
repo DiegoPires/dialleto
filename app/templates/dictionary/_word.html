@@ -6,25 +6,31 @@
         {% for text in word.texts %}
 
                 {% if text.type.name == "Definition" %}
-                    <li>{{ text.text }}</li>
+                    <li>
+                        <p>{{ text.text }}</p>
+
+
+                        <span><a href="{{ url_for("dictionary.language", language=text.language.name) }}">#{{ text.language.name }}</a></span>
+
+                        {% for tag in text.tags %}
+                            <span><a href="{{ url_for("dictionary.tag", tag=tag.tag) }}">#{{ tag.tag }}</a></span>
+                        {% endfor %}
+
+                        {% if text.sons != None %}
+                        <ol class="examples">
+                            {% for example in text.sons %}
+                                <li><i>{{ example.text }}</i></li>
+                            {% endfor %}
+                        </ol>
+    {% endif %}
+                        <p><strong>by: {{ text.lexicographer.username }}, {{ text.timestamp.strftime('%d-%m-%Y') }}</strong></p>
+                    </li>
                 {% endif %}
 
         {% endfor %}
     </ol>
 
-    <h3>Examples</h3>
-    <ol class="examples">
-    {% for text in word.texts %}
-
-            {% if text.type.name == "Example" %}
-                <li><i>{{ text.text }}</i></li>
-            {% endif %}
-
-    {% endfor %}
-
-    </ol>
-
     {% if word.created_by_id == current_user.id %}
-        <a href="{{ url_for('dictionary.delete_word', word=word.word) }}">Delete</a>
+        <p><a href="{{ url_for('dictionary.delete_word', word=word.word) }}">Delete</a></p>
     {% endif %}
 </li>
