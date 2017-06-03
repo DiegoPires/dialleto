@@ -18,7 +18,7 @@ login_manager = LoginManager()
 
 
 def before_request_function():
-    from .dictionary.forms import SearchWordForm
+    from .word.forms import SearchWordForm
     g.search_form = SearchWordForm()
 
 def create_app(config_name):
@@ -41,10 +41,14 @@ def create_app(config_name):
     bootstrap.init_app(app)
 
     # import blueprints
-    from .auth import auth as auth_blueprint
+    from .auth import auth_blueprint as auth_blueprint
     app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
-    from .dictionary import dictionary as dic_blueprint
+    from .word import word_blueprint as word_blueprint
+    app.register_blueprint(word_blueprint, url_prefix='/word')
+    app.before_request(before_request_function)
+
+    from .dictionary import dic_blueprint as dic_blueprint
     app.register_blueprint(dic_blueprint)
     app.before_request(before_request_function)
 

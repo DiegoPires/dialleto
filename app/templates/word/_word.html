@@ -1,6 +1,6 @@
 <li class="words">
 
-    <h2><a href="{{ url_for('dictionary.word', term=word.word) }}">{{ word.word }}</a></h2>
+    <h2><a href="{{ url_for('word.word', term=word.word) }}">{{ word.word }}</a></h2>
 
     <h3>Definitions</h3>
     <ol class="definitions">
@@ -48,6 +48,6 @@
     </ol>
 
     {% if word.created_by_id == current_user.id %}
-        <p><a href="{{ url_for('dictionary.delete_word', word=word.word) }}">Delete</a></p>
+        <p><a href="{{ url_for('word.delete_word', word=word.word) }}">Delete</a></p>
     {% endif %}
 </li>

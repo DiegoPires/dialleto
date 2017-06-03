@@ -3,12 +3,12 @@
 from flask import flash, redirect, render_template, url_for
 from flask_login import login_required, login_user, logout_user
 
-from . import auth
+from . import auth_blueprint
 from .forms import LoginForm, RegistrationForm
 from .. import db
 from ..models.Lexicographer import Lexicographer
 
-@auth.route('/register', methods=['GET', 'POST'])
+@auth_blueprint.route('/register', methods=['GET', 'POST'])
 def register():
     """
     Handle requests to the /register route
@@ -19,8 +19,8 @@ def register():
         employee = Lexicographer(
             email=form.email.data,
             username=form.username.data,
-            first_name=form.first_name.data,
-            last_name=form.last_name.data,
+            #first_name=form.first_name.data,
+            #last_name=form.last_name.data,
             password=form.password.data)
 
         # add employee to the database
@@ -34,7 +34,7 @@ def register():
     # load registration template
     return render_template('auth/register.html', form=form, title='Register')
 
-@auth.route('/login', methods=['GET', 'POST'])
+@auth_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
     """
     Handle requests to the /login route
@@ -61,7 +61,7 @@ def login():
     # load login template
     return render_template('auth/login.html', form=form, title='Login')
 
-@auth.route('/logout')
+@auth_blueprint.route('/logout')
 @login_required
 def logout():
     """
