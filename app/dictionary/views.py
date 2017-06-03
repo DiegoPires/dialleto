@@ -174,7 +174,9 @@ def get_words(term, quantity=1):
         .join(Text, Text.id == popular_description_id)\
         .join(Language, Language.id == Text.language_id)\
         .join(Lexicographer, Lexicographer.id == Text.created_by_id)\
-        .with_entities(Word.id, Word.word, Text.timestamp, Text.text, Language.name, Language.code, Word.created_by_id, Lexicographer.username)
+        .with_entities(Word.id, Word.word, Text.timestamp, Text.text, \
+                       Language.name, Language.code, Word.created_by_id, Lexicographer.username, \
+                       Text.num_ratings)
 
     if term is None:
 

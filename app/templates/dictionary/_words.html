@@ -7,16 +7,30 @@
                     <h2><a href="{{ url_for('dictionary.word', term=word.word) }}">{{ word.word }}</a></h2>
 
                     <ul class="definitions">
-                        <li>{{ word.text }}
+                        <li>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <ul class="rating">
+                                        <li><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></li>
+                                        <li>{{ word.num_ratings }}</li>
+                                        <li><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></li>
+                                    </ul>
+                                </div>
 
-                            <div class="more">
-                                <span>by {{ word.username }},</span>
-                                <span >{{ word.timestamp.strftime('%d-%m-%Y') }}</span>
-                                <span>#{{ word.name }}</span>
-                                {% if word.created_by_id == current_user.id %}
-                                    | <a href="{{ url_for('dictionary.delete_word', word=word.word) }}">Delete</a>
-                                {% endif %}
-                                | <a href="{{ url_for('dictionary.word', term=word.word) }}">More details</a>
+                                <div class="col-md-11">
+
+                                    {{ word.text }}
+
+                                    <div class="more">
+                                        <span>by {{ word.username }},</span>
+                                        <span >{{ word.timestamp.strftime('%d-%m-%Y') }}</span>
+                                        <span>#{{ word.name }}</span>
+                                        {% if word.created_by_id == current_user.id %}
+                                            | <a href="{{ url_for('dictionary.delete_word', word=word.word) }}">Delete</a>
+                                        {% endif %}
+                                        | <a href="{{ url_for('dictionary.word', term=word.word) }}">More details</a>
+                                    </div>
+                                </div>
                             </div>
 
                         </li>
