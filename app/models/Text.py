@@ -16,12 +16,12 @@ class Text(BaseMixin, db.Model):
 
     text = db.Column(db.UnicodeText)
     type = db.Column(db.SmallInteger) #db.Enum(TextType)
-
     word_id = db.Column(db.Integer, db.ForeignKey('words.id'))
     language_id = db.Column(db.Integer, db.ForeignKey('languages.id'))
 
     ratings = db.relationship('Rating', backref='text_ratings', lazy='dynamic')
 
+    # for the examples
     parent_id = db.Column(db.Integer, db.ForeignKey('texts.id'))
     sons = db.relationship('Text',
                            backref=db.backref('text_sons', remote_side='Text.id'),
@@ -30,11 +30,9 @@ class Text(BaseMixin, db.Model):
 
     language = db.relationship('Language', back_populates='texts')
 
-    tags = db.relationship(
-        "Tag",
-        secondary="tag_text",
-        back_populates="texts")
+    tags = db.relationship("Tag", secondary="tag_text", back_populates="texts")
 
+    # to use as a easy property through the code
     @hybrid_property
     def num_ratings(self):
         return self.ratings.count()
