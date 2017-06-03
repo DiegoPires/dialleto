@@ -9,7 +9,7 @@ from sqlalchemy.orm import aliased
 
 from . import dictionary
 from ..models.Word import Word
-from ..models.Text import Text, TextType
+from ..models.Text import Text
 from ..models.Language import Language
 from ..models.Tag import Tag
 from ..models.TagText import TagText
@@ -60,14 +60,18 @@ def search(term=None,page=1):
 @dictionary.route('/word/<string:term>')
 def word(term):
 
-    word = Word.query.filter(Word.word.ilike(term)).first()
+    word = Word.query \
+        .filter(Word.word.ilike(term)) \
+        .first()
+
+    texts = word.texts.order_by(Text.num_ratings.desc())
 
     if word is None:
         abort(404)
 
     return render_template('dictionary/word.html',
                            word=word,
-                           term=term,
+                           texts=texts,
                            title="Word")
 
 @dictionary.route('/word/add', methods=['GET', 'POST'])

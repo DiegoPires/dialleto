@@ -5,7 +5,7 @@
     <h3>Definitions</h3>
     <ol class="definitions">
 
-        {% for text in word.texts %}
+        {% for text in texts|rejectattr('type', "equalto", 2)|list %}
 
             <li>
 
