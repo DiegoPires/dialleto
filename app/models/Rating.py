@@ -1,14 +1,9 @@
 from app import db
 from .BaseMixin import BaseMixin
-import enum
-
-class RatingType(enum.Enum):
-    Like = 1
-    Dislike = 2
 
 class Rating(BaseMixin, db.Model):
 
-    rating = db.Column(db.Enum(RatingType))
+    rating = db.Column(db.Integer)
 
     text_id = db.Column(db.Integer, db.ForeignKey('texts.id'))
 

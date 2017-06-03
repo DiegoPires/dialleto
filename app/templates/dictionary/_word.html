@@ -4,10 +4,21 @@
 
     <h3>Definitions</h3>
     <ol class="definitions">
+
         {% for text in word.texts %}
 
-                {% if text.type.name == "Definition" %}
-                    <li>
+            <li>
+
+                <div class="row">
+                    <div class="col-md-1">
+                        <ul class="rating">
+                            <li><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></li>
+                            <li>{{ text.ratings|sum(attribute='rating') }}</li>
+                            <li><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-11">
                         <p>{{ text.text }}</p>
 
                         {% if text.sons != None %}
@@ -28,8 +39,10 @@
                             {% endfor %}
 
                         </div>
-                    </li>
-                {% endif %}
+                    </div>
+                </div>
+            </li>
+
 
         {% endfor %}
     </ol>

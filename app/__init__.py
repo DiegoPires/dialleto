@@ -36,7 +36,6 @@ def create_app(config_name):
 
     migrate = Migrate(app, db)
 
-    from app.models.Rating import RatingType
     from app.models.Text import TextType
 
     from app.models import Language, Word, Lexicographer, BaseMixin, SuperMixin, Rating, Text, Word, Tag, TagText

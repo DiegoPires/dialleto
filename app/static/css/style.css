@@ -114,3 +114,20 @@ ul.word {
 .navbar-fixed-bottom ul li { margin: 0px 10px; }
 
 .pagination-orientation { text-align:center;}
+
+ul.rating{
+    list-style: none;
+}
+ul.rating span.glyphicon {
+
+
+}
+
+ul.rating li{
+    margin:0px;
+    padding:0px;
+    text-align:center;
+    font-weight: bold;
+    font-size: 1.5em;
+    border:1px solid #ccc;
+}
