@@ -11,9 +11,9 @@
                             <div class="row">
                                 <div class="col-md-1">
                                     <ul class="rating">
-                                        <li><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></li>
+                                        <li><a href="{{ url_for("word.word", term=word.word, text_id=word.text_id, action="like") }}"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a></li>
                                         <li>{{ word.num_ratings }}</li>
-                                        <li><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></li>
+                                        <li><a href="{{ url_for("word.word", term=word.word, text_id=word.text_id, action="like") }}"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a></li>
                                     </ul>
                                 </div>
 

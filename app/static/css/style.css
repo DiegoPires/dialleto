@@ -90,6 +90,7 @@ p.copyright {
 
 ul.word {
     list-style: none;
+    padding:0px;
 }
 
  ul.word  li  ol{

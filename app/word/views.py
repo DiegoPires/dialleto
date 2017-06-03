@@ -10,24 +10,29 @@ from sqlalchemy.orm import aliased
 from . import word_blueprint
 from ..models.Word import Word
 from ..models.Text import Text
-from ..models.Language import Language
-from ..models.Tag import Tag
-from ..models.TagText import TagText
-from ..models.Lexicographer import Lexicographer
+from ..models.Rating import Rating
 
 from .. import db
 from .forms import WordForm
 
+@word_blueprint.route('/<string:term>', defaults={ "text_id":None, "action":None})
+@word_blueprint.route('/<string:term>/<int:text_id>', defaults={ "action":None})
+@word_blueprint.route('/<string:term>/<int:text_id>/<string:action>')
+def word(term, text_id=None, action=None):
 
-
-@word_blueprint.route('/<string:term>')
-def word(term):
+    if action != None and text_id != None:
+        DefineRating(term,text_id,action)
 
     word = Word.query \
         .filter(Word.word.ilike(term)) \
-        .first()
+        .first_or_404()
 
-    texts = word.texts.order_by(Text.num_ratings.desc())
+    if text_id != None:
+        texts = word.texts.filter(Text.id==text_id)
+        onlyText=True
+    else:
+        texts = word.texts.order_by(Text.num_ratings.desc())
+        onlyText=False
 
     if word is None:
         abort(404)
@@ -35,6 +40,7 @@ def word(term):
     return render_template('word/word.html',
                            word=word,
                            texts=texts,
+                           onlyText=onlyText,
                            title="Word")
 
 @word_blueprint.route('/add', methods=['GET', 'POST'])
@@ -81,3 +87,27 @@ def delete_word(word):
 
     # redirect to the roles page
     return redirect(url_for('dictionary.index'))
+
+
+def DefineRating(term, text_id, action):
+
+    exist = Rating.query.filter(Rating.text_id==text_id, Rating.created_by_id==current_user.id)
+    if exist.count() != 0:
+
+        flash("You already {0} this word".format(action))
+
+    else:
+
+        rating = Rating(text_id=text_id, created_by_id=current_user.id)
+
+        if action == "like":
+            rating.rating = 1
+        else:
+            rating.rating = -1
+
+        try:
+            db.session.add(rating)
+            db.session.commit()
+            flash("{0} added to text".format(action))
+        except:
+            flash("Error")

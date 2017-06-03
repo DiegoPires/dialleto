@@ -14,6 +14,10 @@
         <ul class="word">
             {% include '/word/_word.html' %}
         </ul>
+
+        {% if onlyText %}
+            <a href="{{ url_for("word.word", term=word.word) }}">See all definitions</a>
+        {% endif %}
     </div>
 
 {% endblock %}
