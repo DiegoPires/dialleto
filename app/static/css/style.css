@@ -86,11 +86,17 @@ div.add_definition{
 
 
 .words ul li h2, ul.word  li  h2, menu-right h2 {
-    border-bottom: 2px solid #cccccc;
     padding: 3px 0px;
     margin: 0px;
 }
 
+.header-word{
+    border-bottom: 2px solid #cccccc;
+
+}
+
+.at-share-btn-elements{
+    text-align: right;}
 
 ul.word {
     list-style: none;

@@ -2,9 +2,20 @@
 {% import "bootstrap/utils.html" as utils %}
 {% extends "base.html" %}
 {% block title %}
-    Home
+    | {{ word.word }}
 {% endblock %}
 
+{% block metatags %}
+
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="Description" CONTENT="{{ word.texts.first().text }}">
+    <meta name="robots" content="index,follow">
+
+    <meta property="og:title" content="Dialleto | {{ word.word }}" />
+    <meta property="og:description" content="{{ word.texts.first().text }}. See more definitions" />
+
+{% endblock %}
 {% block body %}
 
 

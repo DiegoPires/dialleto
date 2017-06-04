@@ -3,9 +3,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{{ title }} | Dialleto</title>
+    <title>
+        Dialleto
+        {% block title %}
+        {% endblock %}
+    </title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+
+    {% block metatags %}
+    {% endblock %}
 </head>
 <body>
 
@@ -65,6 +72,9 @@
   integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
   crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59347fec083cb2bc"></script>
 
 </body>
 </html>

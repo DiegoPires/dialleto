@@ -1,7 +1,18 @@
 <!-- app/templates/home/index.html -->
 {% import "bootstrap/utils.html" as utils %}
 {% extends "base.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}
+    | Home
+{% endblock %}
+
+{% block metatags %}
+
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="Description" CONTENT="A multilingual dictionary of slang and regionalisms! Get that slang that your immigrant friend are using, or just surprise your grandma with some new fancy words.">
+    <meta name="robots" content="index,follow">
+
+{% endblock %}
 {% block body %}
 <div class="intro-header">
     <div class="container">

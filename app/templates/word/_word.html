@@ -1,6 +1,15 @@
 <li class="words">
 
-    <h2><a href="{{ url_for('word.word', term=word.word) }}">{{ word.word }}</a></h2>
+    <div class="row header-word">
+        <div class="col-md-10">
+            <h2><a href="{{ url_for('word.word', term=word.word) }}">{{ word.word }}</a></h2>
+        </div>
+        <div class="col-md-2 ">
+            <div class="addthis_inline_share_toolbox"
+                addthis:description="{{ word.texts.first().text }}">
+            </div>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-md-10">
@@ -66,9 +75,9 @@
                             </li>
                         {% endfor %}
                         <li>
-                            <a href="{{ url_for("word.add_word", term=word.word) }}">
+                            <!--a href="{{ url_for("word.add_word", term=word.word) }}"-->
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                            </a>
+                            <!--/a-->
                         </li>
                     </ul>
                 {% endif %}

@@ -4,7 +4,10 @@
         <ul>
             {% for word in words %}
                 <li>
-                    <h2><a href="{{ url_for('word.word', term=word.word) }}">{{ word.word }}</a></h2>
+                    <div class=" header-word">
+                            <h2><a href="{{ url_for('word.word', term=word.word) }}">{{ word.word }}</a></h2>
+
+                    </div>
 
                     <ol class="definitions">
                         <li>
