@@ -7,6 +7,7 @@ from . import auth_blueprint
 from .forms import LoginForm, RegistrationForm
 from .. import db
 from ..models.Lexicographer import Lexicographer
+from ..models.Language import Language
 
 @auth_blueprint.route('/register', methods=['GET', 'POST'])
 def register():
@@ -15,6 +16,8 @@ def register():
     Add an employee to the database through the registration form
     """
     form = RegistrationForm()
+    form.language.choices = [(g.id, g.name) for g in Language.query.order_by('name')]
+
     if form.validate_on_submit():
         employee = Lexicographer(
             email=form.email.data,
@@ -22,6 +25,9 @@ def register():
             #first_name=form.first_name.data,
             #last_name=form.last_name.data,
             password=form.password.data)
+
+        language = Language.query.get(form.language.data)
+        employee.languages.append(language)
 
         # add employee to the database
         db.session.add(employee)

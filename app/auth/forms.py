@@ -1,10 +1,13 @@
 # app/auth/forms.py
 
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, StringField, SubmitField, ValidationError
+from wtforms import PasswordField, HiddenField, SelectField, StringField, SubmitField, ValidationError, FieldList, FormField
 from wtforms.validators import DataRequired, Email, EqualTo
 
 from ..models.Lexicographer import Lexicographer
+
+class LanguagemRegistrationForm(FlaskForm):
+    language = HiddenField(validators=[DataRequired()])
 
 class RegistrationForm(FlaskForm):
     """
@@ -19,6 +22,12 @@ class RegistrationForm(FlaskForm):
                                         EqualTo('confirm_password')
                                         ])
     confirm_password = PasswordField('Confirm Password')
+
+    # TODO: Implement dynamic list for this: https://gist.github.com/kageurufu/6813878
+    #properties = FieldList(FormField(PropertyForm), validators=[Optional()])
+
+    language = SelectField(u'Language', choices=[], coerce=int)
+
     submit = SubmitField('Register')
 
     def validate_email(self, field):
