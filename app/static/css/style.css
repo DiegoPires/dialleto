@@ -99,9 +99,14 @@ ul.related-words li:first-child {
     background-color: inherit;
 }
 
+ul.related-words li:last-child {
+    background-color: darkgrey;
+}
+
  ul.related-words li{
      background-color: #c4e3f3;
      padding:5px;
+     margin: 0px 15px 0px 0px !important;
      display:inline;
  }
 

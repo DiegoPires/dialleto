@@ -70,7 +70,7 @@ def add_word():
         except:
             flash("Error")
 
-    return render_template('dictionary/addword.html', title="Add Word", form=form, add_word=True)
+    return render_template('word/addword.html', title="Add Word", form=form, add_word=True)
 
 
 @word_blueprint.route('/delete/<string:word>', methods=['GET'])
