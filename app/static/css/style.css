@@ -39,6 +39,12 @@ p.copyright {
     border-bottom: 1px solid rgba(0,0,0,0.2);
 }
 
+div.add_definition{
+    margin-top: 25px;
+    position: relative;
+    text-align: right;
+}
+
 .intro-header {
     padding-top: 20px;
     padding-bottom: 50px;

@@ -11,6 +11,7 @@ from . import word_blueprint
 from ..models.Word import Word
 from ..models.Text import Text
 from ..models.Rating import Rating
+from ..models.Language import Language
 
 from .. import db
 from .forms import WordForm
@@ -43,18 +44,40 @@ def word(term, text_id=None, action=None):
                            onlyText=onlyText,
                            title="Word")
 
-@word_blueprint.route('/add', methods=['GET', 'POST'])
+
+@word_blueprint.route('/add', defaults={ "term":None}, methods=['GET',"POST"])
+@word_blueprint.route('/add/<string:term>', methods=['GET', 'POST'])
 @login_required
-def add_word():
+def add_word(term):
 
     form = WordForm()
+    form.language.choices=[(g.id, g.name) for g in Language.query.order_by('name')]
+
+    word = None
+    if term != None:
+        word = Word.query.filter(Word.word==term).first_or_404()
+        form.word.data = word.word
+        form.word(disabled=True)
+        form.word_id.data = word.id
 
     if form.validate_on_submit():
 
-        word = Word(word=form.word.data, created_by_id=current_user.id)
+        if form.word_id.data != "":
+            word = Word.query.filter(Word.id==form.word_id.data).first_or_404()
+        else:
+            word = Word(word=form.word.data, created_by_id=current_user.id)
 
-        textDescription = Text(text=form.definition.data, type=TextType.Definition, language_id=1)
-        textExample = Text(text=form.example.data, type=TextType.Example, language_id=1)
+        textDescription = Text(text=form.definition.data,
+                               type=1,
+                               language_id=form.language.data,
+                               created_by_id=current_user.id)
+
+        textExample = Text(text=form.example.data,
+                           type=2,
+                           language_id=form.language.data,
+                           created_by_id=current_user.id)
+
+        textDescription.sons.append(textExample)
 
         word.texts.append(textDescription)
         word.texts.append(textExample)
@@ -70,7 +93,10 @@ def add_word():
         except:
             flash("Error")
 
-    return render_template('word/addword.html', title="Add Word", form=form, add_word=True)
+    return render_template('word/addword.html',
+                           form=form,
+                           word=word,
+                           add_word=True)
 
 
 @word_blueprint.route('/delete/<string:word>', methods=['GET'])

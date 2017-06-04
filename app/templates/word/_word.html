@@ -2,7 +2,19 @@
 
     <h2><a href="{{ url_for('word.word', term=word.word) }}">{{ word.word }}</a></h2>
 
-    <h3>Definitions</h3>
+    <div class="row">
+        <div class="col-md-10">
+            <h3>Definitions</h3>
+        </div>
+        <div class="col-md-2 ">
+            <div class="add_definition">
+                <a href="{{ url_for("word.add_word", term=word.word) }}">
+                    Add Definition
+                </a>
+            </div>
+        </div>
+    </div>
+
     <ol class="definitions">
 
         {% for text in texts|rejectattr('type', "equalto", 2)|list %}
@@ -53,14 +65,20 @@
                                 </a>
                             </li>
                         {% endfor %}
-                        <li><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></li>
+                        <li>
+                            <a href="{{ url_for("word.add_word", term=word.word) }}">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </a>
+                        </li>
                     </ul>
                 {% endif %}
+
             </li>
 
-
-
         {% endfor %}
+
+
+
     </ol>
 
     {% if word.created_by_id == current_user.id %}

@@ -25,7 +25,6 @@ class Text(BaseMixin, db.Model):
     parent_id = db.Column(db.Integer, db.ForeignKey('texts.id'))
     sons = db.relationship('Text',
                            backref=db.backref('text_sons', remote_side='Text.id'),
-                           viewonly=True,
                            lazy='dynamic')
 
     language = db.relationship('Language', back_populates='texts')
