@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Word Not Found{% endblock %}
+{% block body %}
+    <div class="container">
+
+        <h1>Word Not Found :(</h1>
+
+        <p>
+            <a href="{{ url_for("word.word", term="damn") }}">Damn</a>,
+            <a href="{{ url_for("word.word", term="bro") }}">bro</a>!
+
+            We couldn't find this word, why you don't
+
+            <a href="{{ url_for("word.add_word") }}">add</a> it?
+
+        <p>Or just <a href="{{ url_for('dictionary.random') }}">go somewhere nicer</a>.</p>
+    </div>
+{% endblock %}

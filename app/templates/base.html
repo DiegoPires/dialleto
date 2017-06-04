@@ -35,7 +35,7 @@
 
             <ul class="nav navbar-nav navbar-left">
                 <li><a href="{{ url_for('word.add_word') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></li>
-                <li><a href="{{ url_for('dictionary.random_word') }}"><span class="glyphicon glyphicon-random" aria-hidden="true"></span></a></li>
+                <li><a href="{{ url_for('dictionary.random') }}"><span class="glyphicon glyphicon-random" aria-hidden="true"></span></a></li>
             </ul>
 
             <form class="navbar-form navbar-left" action="{{ url_for('dictionary.search') }}" method="post" name="search">

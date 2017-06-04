@@ -15,6 +15,8 @@ from ..models.Lexicographer import Lexicographer
 
 from .. import db
 
+
+
 @dic_blueprint.route('/')
 def index():
 
@@ -57,7 +59,7 @@ def search(term=None,page=1):
 
 
 @dic_blueprint.route('/random')
-def random_word():
+def random():
     words = get_words(None)
     return redirect(url_for("word.word", term=words.one().word))
 

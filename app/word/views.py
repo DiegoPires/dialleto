@@ -16,6 +16,12 @@ from ..models.Language import Language
 from .. import db
 from .forms import WordForm
 
+
+@word_blueprint.errorhandler(404)
+def page_not_found(e):
+    return render_template('word/404.html'), 404
+
+
 @word_blueprint.route('/<string:term>', defaults={ "text_id":None, "action":None})
 @word_blueprint.route('/<string:term>/<int:text_id>', defaults={ "action":None})
 @word_blueprint.route('/<string:term>/<int:text_id>/<string:action>')
@@ -31,6 +37,9 @@ def word(term, text_id=None, action=None):
     if text_id != None:
         texts = word.texts.filter(Text.id==text_id)
         onlyText=True
+
+        if texts.count() == 0:
+            abort(404)
     else:
         texts = word.texts.order_by(Text.num_ratings.desc())
         onlyText=False

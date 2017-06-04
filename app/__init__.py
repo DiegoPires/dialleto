@@ -1,7 +1,7 @@
 # app/__init__.py
 
 # third-party imports
-from flask import Flask, g
+from flask import Flask, g, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
@@ -52,5 +52,9 @@ def create_app(config_name):
     from .dictionary import dic_blueprint as dic_blueprint
     app.register_blueprint(dic_blueprint)
     app.before_request(before_request_function)
+
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template('404.html'), 404
 
     return app
