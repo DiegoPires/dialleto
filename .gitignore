@@ -28,5 +28,5 @@ venv
 *.pyc
 build
 
-instance/
+instance/config.py
 migrations/
