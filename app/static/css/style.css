@@ -78,10 +78,6 @@ p.copyright {
 .words .more { font-size: 12px !important;
     font-weight:bold; margin: 10px 0px }
 
-.words ul li {
-
-    margin-bottom: 30px;
-}
 
 .words ul li h2, ul.word  li  h2, menu-right h2 {
     border-bottom: 2px solid #cccccc;
@@ -99,12 +95,26 @@ ul.word {
     margin: 0px 0px 20px 0px;
 }
 
- ul.definitions li{
-     margin: 2px 0px;
-     text-align: justify;
+ul.related-words li:first-child {
+    background-color: inherit;
+}
+
+ ul.related-words li{
+     background-color: #c4e3f3;
+     padding:5px;
+     display:inline;
  }
 
-.definitions li { background-color: #eee; padding: 10px; margin: 0px 0px 20px 0px;}
+ ol.definitions li {
+     margin: 0px 0px 10px 0px;
+
+ }
+ol.definitions li div.row-word {
+    background-color: #eee;
+    padding: 10px 0px;
+    text-align: justify;
+    margin: 0px 0px 10px 0px;
+}
 
 
 .navbar .divider-vertical {

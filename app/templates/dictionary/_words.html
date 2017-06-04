@@ -6,9 +6,9 @@
                 <li>
                     <h2><a href="{{ url_for('word.word', term=word.word) }}">{{ word.word }}</a></h2>
 
-                    <ul class="definitions">
+                    <ol class="definitions">
                         <li>
-                            <div class="row">
+                            <div class="row  row-word" style="border-right: 15px solid #{{ word.color }}">
                                 <div class="col-md-1">
                                     <ul class="rating">
                                         <li><a href="{{ url_for("word.word", term=word.word, text_id=word.text_id, action="like") }}"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a></li>
@@ -34,7 +34,7 @@
                             </div>
 
                         </li>
-                    </ul>
+                    </ol>
 
                 </li>
             {% endfor %}

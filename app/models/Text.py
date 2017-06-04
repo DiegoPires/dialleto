@@ -1,6 +1,6 @@
 from app import db
 from .BaseMixin import BaseMixin
-from .TagText import TagText
+from .Relation import Relation
 from .Rating import Rating
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import relationship, backref
@@ -32,6 +32,16 @@ class Text(BaseMixin, db.Model):
 
     tags = db.relationship("Tag", secondary="tag_text", back_populates="texts")
 
+    #relation_to = db.relationship('Relation', backref='to', primaryjoin=id == Relation.text_id_to)
+    #relation_from = db.relationship('Relation', backref='from', primaryjoin=id == Relation.text_id_from)
+
+    relations = db.relationship('Relation',
+                                secondary=Relation.__table__,
+                                primaryjoin="Text.id == Relation.text_id_to",
+                                secondaryjoin="Text.id == Relation.text_id_from")
+
+    word = db.relationship("Word", foreign_keys=[word_id])
+
     # to use as a easy property through the code
     @hybrid_property
     def num_ratings(self):
@@ -48,3 +58,20 @@ class Text(BaseMixin, db.Model):
         return '<Text: {}>'.format(self.text)
 
 
+# this relationship is viewonly and selects across the union of all
+# friends
+relations_union = db.select([
+                        Relation.__table__.c.text_id_to,
+                        Relation.__table__.c.text_id_from
+                        ]).union(
+                            db.select([
+                                Relation.__table__.c.text_id_to,
+                                Relation.__table__.c.text_id_from]
+                            )
+                    ).alias()
+
+Text.all_relations = relationship('Text',
+                       secondary=relations_union,
+                       primaryjoin=Text.id==relations_union.c.text_id_to,
+                       secondaryjoin=Text.id==relations_union.c.text_id_from,
+                       viewonly=True)

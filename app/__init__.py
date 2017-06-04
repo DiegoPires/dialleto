@@ -36,7 +36,8 @@ def create_app(config_name):
 
     migrate = Migrate(app, db)
 
-    from app.models import Language, Word, Lexicographer, BaseMixin, SuperMixin, Rating, Text, Word, Tag, TagText
+    from app.models import BaseMixin, SuperMixin
+    from app.models import Language, Word, Lexicographer, Rating, Text, Word, Tag, TagText, Relation
 
     bootstrap.init_app(app)
 

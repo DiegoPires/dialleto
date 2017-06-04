@@ -110,7 +110,7 @@ def get_words(term, quantity=1):
         .join(Lexicographer, Lexicographer.id == Text.created_by_id)\
         .with_entities(Word.id, Word.word, Text.timestamp, Text.text, Text.id.label("text_id"),  \
                        Language.name, Language.code, Word.created_by_id, Lexicographer.username, \
-                       Text.num_ratings)
+                       Text.num_ratings, Language.color)
 
     if term is None:
 

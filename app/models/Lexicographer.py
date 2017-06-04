@@ -18,6 +18,7 @@ class Lexicographer(UserMixin, SuperMixin, db.Model):
     texts = db.relationship('Text', backref='lexicographer_texts', lazy='dynamic')
     words = db.relationship('Word', backref='lexicographer_words', lazy='dynamic')
     tags = db.relationship('Tag', backref='lexicographer_tags', lazy='dynamic')
+    relations = db.relationship('Relation', backref='lexicographer_relation', lazy='dynamic')
 
     @property
     def password(self):

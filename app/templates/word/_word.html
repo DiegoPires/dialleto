@@ -8,8 +8,7 @@
         {% for text in texts|rejectattr('type', "equalto", 2)|list %}
 
             <li>
-
-                <div class="row" style="border-right: 3px solid #{{ text.language.color }}">
+                <div class="row row-word" style="border-right: 15px solid #{{ text.language.color }}">
                     <div class="col-md-1">
                         <ul class="rating">
                             <li><a href="{{ url_for("word.word", term=word.word, text_id=text.id, action="like") }}"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a></li>
@@ -38,10 +37,26 @@
                                 <span><a href="{{ url_for("dictionary.tag", tag=tag.tag) }}">#{{ tag.tag }}</a></span>
                             {% endfor %}
 
+
                         </div>
                     </div>
+
                 </div>
+
+                {% if text.relations != None %}
+                    <ul class="related-words">
+                        <li>Related words:</li>
+                        {% for relation in text.relations %}
+                            <li style="border-right: 10px solid #{{ relation.relations_from.language.color }};">
+                                <a href="{{ url_for("word.word", term=relation.relations_from.word.word) }}">
+                                    {{ relation.relations_from.word.word }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
             </li>
+
 
 
         {% endfor %}
