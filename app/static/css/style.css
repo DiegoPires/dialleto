@@ -161,3 +161,19 @@ ul.rating li{
     font-size: 1.3em;
     border:1px solid #ccc;
 }
+
+.formrelatedwords ul{
+    list-style: none;
+    margin:0px;
+    padding:0px
+}
+
+.formrelatedwords ul li{
+    margin: 5px 0px;
+}
+
+.formrelatedwords ul li label {
+    font-weight: inherit;
+    margin-left:10px;
+    display: initial;
+}

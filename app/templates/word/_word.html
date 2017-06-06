@@ -75,9 +75,9 @@
                             </li>
                         {% endfor %}
                         <li>
-                            <!--a href="{{ url_for("word.add_word", term=word.word) }}"-->
+                            <a href="{{ url_for("word.add_related_word", word=word.word, text_id=text.id) }}">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                            <!--/a-->
+                            </a>
                         </li>
                     </ul>
                 {% endif %}

@@ -12,9 +12,10 @@ from ..models.Word import Word
 from ..models.Text import Text
 from ..models.Rating import Rating
 from ..models.Language import Language
+from ..models.Relation import Relation
 
 from .. import db
-from .forms import WordForm
+from .forms import WordForm, RelatedWordForm
 
 
 @word_blueprint.errorhandler(404)
@@ -106,6 +107,42 @@ def add_word(term):
                            form=form,
                            word=word,
                            add_word=True)
+
+
+@word_blueprint.route('/addrelatedword/<string:word>/<int:text_id>', methods=['GET', "POST"])
+@login_required
+def add_related_word(word,text_id):
+
+    form = RelatedWordForm()
+
+    form.word.data = word
+    words = db.session.query(Word, Text) \
+        .join(Text, Text.word_id == Word.id) \
+        .filter(Text.type != 2) \
+        .order_by(Word.word) \
+        .with_entities(Text.id, (Word.word + ": " + Text.text).label("text"))
+
+    form.words.choices = [(g.id, g.text) for g in words]
+
+    if form.validate_on_submit():
+
+        try:
+            for text_form in form.words.data:
+                db.session.add(Relation(text_id_to=text_id, text_id_from=text_form))
+                db.session.add(Relation(text_id_to=text_form, text_id_from=text_id))
+
+            db.session.commit()
+            flash("Relation added!")
+
+        except:
+            flash("Error")
+
+        return redirect(url_for("word.word", term=form.word.data))
+
+    return render_template('word/addrelatedword.html',
+                           form=form,
+                           word=word,
+                           text_id=text_id)
 
 
 @word_blueprint.route('/delete/<string:word>', methods=['GET'])

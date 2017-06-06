@@ -1,0 +1,36 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block title %}
+    | Add related word
+{% endblock %}
+
+{% block metatags %}
+
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="Description" CONTENT="Let's go fella, write that shit down">
+    <meta name="robots" content="index,follow">
+
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <h1>Add related word</h1>
+        <br/>
+
+        <form method="POST" class="formrelatedwords" >
+            {{ form.hidden_tag() }}
+            <div>{{ form.words.label }}: {{ form.words(class="css_class") }}</div>
+
+            <div>{{ form.submit(class="btn btn-default") }}</div>
+        </form>
+
+        {% for field in form if field.widget.input_type != 'hidden' %}
+            {% if field.errors %}
+                <span style="color: red;">{% for error in field.errors %}{{ error }}{% if not loop.last %}<br />{% endif %}{% endfor %}</span>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+{% endblock %}
