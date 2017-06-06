@@ -180,19 +180,26 @@ def delete_word(word):
 
 def DefineRating(term, text_id, action):
 
+    if action == "like":
+        ratingType = 1
+    else:
+        ratingType = -1
+
+    execute = True
+
     exist = Rating.query.filter(Rating.text_id==text_id, Rating.created_by_id==current_user.id)
     if exist.count() != 0:
 
-        flash("You already {0} this word".format(action))
-
-    else:
-
-        rating = Rating(text_id=text_id, created_by_id=current_user.id)
-
-        if action == "like":
-            rating.rating = 1
+        if exist.first().rating != ratingType:
+            db.session.delete(exist.first())
+            db.session.commit()
         else:
-            rating.rating = -1
+            execute = False
+            flash("You already {0} this word".format(action))
+
+    if execute:
+
+        rating = Rating(text_id=text_id, rating=ratingType, created_by_id=current_user.id)
 
         try:
             db.session.add(rating)
