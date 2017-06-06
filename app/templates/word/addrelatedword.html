@@ -16,14 +16,19 @@
 {% block body %}
     <div class="container">
 
-        <h1>Add related word</h1>
+        <h1>Add related word to <i>{{ word.word }}</i></h1>
         <br/>
 
         <form method="POST" class="formrelatedwords" >
             {{ form.hidden_tag() }}
             <div>{{ form.words.label }}: {{ form.words(class="css_class") }}</div>
 
-            <div>{{ form.submit(class="btn btn-default") }}</div>
+            <p>&nbsp;</p>
+            <div class="btn-toolbar" role="group" aria-label="Actions">
+                <div class="btn-group" role="group" aria-label="...">{{ form.submit(class="btn btn-primary") }}</div>
+                <div class="btn-group" role="group" aria-label="...">
+                    <a href="{{ url_for("word.word", term=word.word) }}">Return to {{ word.word }}</a></div>
+            </div>
         </form>
 
         {% for field in form if field.widget.input_type != 'hidden' %}

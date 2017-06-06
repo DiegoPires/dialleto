@@ -115,12 +115,30 @@ def add_related_word(word,text_id):
 
     form = RelatedWordForm()
 
-    form.word.data = word
+    word = Word.query.filter(Word.word==word).first_or_404()
+
+    nottexts = db.session.query(Text, Relation) \
+        .join(Relation, Text.id == Relation.text_id_to)\
+        .filter(Text.id==text_id) \
+        .with_entities(Relation.text_id_from)
+
+    notwords = db.session.query(Text) \
+        .filter(Text.id.in_(nottexts)) \
+        .with_entities(Text.word_id)
+
+    form.word.data = word.word
     words = db.session.query(Word, Text) \
         .join(Text, Text.word_id == Word.id) \
         .filter(Text.type != 2) \
+        .filter(Text.id != text_id) \
+        .filter(Word.id != word.id) \
+        .filter(Word.id.notin_(notwords)) \
         .order_by(Word.word) \
         .with_entities(Text.id, (Word.word + ": " + Text.text).label("text"))
+
+    if words.count() == 0:
+        flash("No words availables to relate")
+        return redirect(url_for("word.word", term=word.word))
 
     form.words.choices = [(g.id, g.text) for g in words]
 
@@ -141,8 +159,7 @@ def add_related_word(word,text_id):
 
     return render_template('word/addrelatedword.html',
                            form=form,
-                           word=word,
-                           text_id=text_id)
+                           word=word)
 
 
 @word_blueprint.route('/delete/<string:word>', methods=['GET'])
