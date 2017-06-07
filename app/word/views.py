@@ -13,6 +13,8 @@ from ..models.Text import Text
 from ..models.Rating import Rating
 from ..models.Language import Language
 from ..models.Relation import Relation
+from ..models.Tag import Tag
+from ..models.TagText import TagText
 
 from .. import db
 from .forms import WordForm, RelatedWordForm
@@ -72,6 +74,7 @@ def add_word(term):
 
     if form.validate_on_submit():
 
+
         if form.word_id.data != "":
             word = Word.query.filter(Word.id==form.word_id.data).first_or_404()
         else:
@@ -81,6 +84,14 @@ def add_word(term):
                                type=1,
                                language_id=form.language.data,
                                created_by_id=current_user.id)
+
+        for tagText in form.tags.data.split(" "):
+            tag = Tag.query.filter(Tag.tag.ilike(tagText)).first()
+
+            if tag is None:
+                tag = Tag(tag=tagText, created_by_id=current_user.id, language_id=form.language.data)
+
+            textDescription.tags.append(tag)
 
         textExample = Text(text=form.example.data,
                            type=2,
@@ -93,8 +104,8 @@ def add_word(term):
         word.texts.append(textExample)
 
         try:
-
             db.session.add(word)
+
             db.session.commit()
             flash("Word added!")
 

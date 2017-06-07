@@ -11,6 +11,7 @@ class Language(BaseMixin, db.Model):
     parent_id = db.column(db.Integer, db.ForeignKey('languages.id'))
 
     texts = db.relationship('Text', backref='language_texts', lazy='dynamic')
+    tags  = db.relationship('Tag', backref='language_tag', lazy='dynamic')
     #sons = db.relationship('Language', backref='language_sons', lazy='dynamic')
 
     #sons = db.relationship('Language',

@@ -19,6 +19,7 @@ class WordForm(FlaskForm):
     word = StringField('Word', [validators.required(), validators.length(max=60)])
     definition = TextAreaField('Definition', [validators.required(), validators.length(max=200)])
     example = TextAreaField('Example', [validators.required(), validators.length(max=200)])
+    tags = TextAreaField('Tags', [validators.required(), validators.length(max=200)])
     language = SelectField(u'Language', choices=[], coerce=int)
 
     submit = SubmitField('Submit')
