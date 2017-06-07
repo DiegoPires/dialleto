@@ -45,7 +45,7 @@
             <h2>Languages</h2>
             <ol>
                 {% for language in languages %}
-                    <li><a href="{{ url_for("dictionary.language", language=language.name) }}">#{{ language.name }}</a></li>
+                    <li style="border-right: 15px solid #{{ language.color }}"><a href="{{ url_for("dictionary.language", language=language.name) }}">#{{ language.name }}</a></li>
                 {% endfor %}
             </ol>
 

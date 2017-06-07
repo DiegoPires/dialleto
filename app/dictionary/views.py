@@ -33,8 +33,9 @@ def index():
 
 
 @dic_blueprint.route('/search', methods=['POST'])
-@dic_blueprint.route('/search/<string:term>/<int:page>', methods=['POST', 'GET'])
-def search(term=None,page=1):
+@dic_blueprint.route('/search/<int:page>', defaults={ "term":"" }, methods=['GET',"POST"])
+@dic_blueprint.route('/search/<int:page>/<string:term>', methods=['GET', "POST"])
+def search(page=1, term=None):
 
     if term == None:
         #if not g.search_form.validate_on_submit():

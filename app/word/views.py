@@ -57,7 +57,7 @@ def word(term, text_id=None, action=None):
                            title="Word")
 
 
-@word_blueprint.route('/add', defaults={ "term":None}, methods=['GET',"POST"])
+@word_blueprint.route('/add', defaults={ "term":None }, methods=['GET',"POST"])
 @word_blueprint.route('/add/<string:term>', methods=['GET', 'POST'])
 @login_required
 def add_word(term):

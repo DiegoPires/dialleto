@@ -48,13 +48,13 @@
             <ul class="pagination">
 
                 {% if pagination.has_prev %}
-                    <li class="previous"><a href="{{ url_for('dictionary.search', term=term, page=pagination.prev_num) }}">&larr; Previous</a></li>
+                    <li class="previous"><a href="{{ url_for('dictionary.search', page=pagination.prev_num, term=term) }}">&larr; Previous</a></li>
                 {% else %}
                     <li class="previous disabled"><a href="#">&larr; Previous</a></li>
                 {% endif %}
 
                 {% if pagination.has_next %}
-                    <li class="next"><a href="{{ url_for('dictionary.search', term=term, page=pagination.next_num) }}">Next &rarr;</a></li>
+                    <li class="next"><a href="{{ url_for('dictionary.search', page=pagination.next_num, term=term) }}">Next &rarr;</a></li>
                 {% else %}
                     <li class="next disabled"><a href="#">Next &rarr;</a></li>
                 {% endif %}
