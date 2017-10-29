@@ -30,7 +30,7 @@
                 </router-link>
 
                  <span class="navbar-item">
-                  <language />
+                  <language-selector />
                 </span>
 
               </div>
@@ -52,8 +52,8 @@
           <div class="content has-text-centered">
             <div class="columns">
               <div class="column has-text-left">
-                <a href="#">Contact</a> | 
-                <a href="#">About</a>
+                <router-link to="/contact">{{ $t("menu.contact")}}</router-link> | 
+                <router-link to="/about">{{ $t("menu.about") }}</router-link>
               </div>
               <div class="column has-text-right">
                 <strong>Dialleto</strong> by <a href="http://www.diegopires.com.br">Diego Silva Pires</a>.
@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import Language from './components/language'
+import LanguageSelector from './components/languageSelector'
 
 export default {
   name: 'app',
@@ -109,7 +109,7 @@ export default {
     })
   },
   components: {
-    Language
+    'language-selector': LanguageSelector
   }
 }
 </script>

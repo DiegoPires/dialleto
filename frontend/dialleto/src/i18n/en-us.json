@@ -10,6 +10,15 @@
             "add": "Submit"
         }
     },
+    "contact":
+    {
+        "name": "Name",
+        "e-mail": "E-mail",
+        "subject": "Subject",
+        "message": "Message",
+        "send" : "Send",
+        "cancel": "Cancel"
+    },
     "languages": {
         "pt-br": "Portuguese",
         "en-us": "English",
@@ -17,6 +26,8 @@
     },
     "menu": {
         "add": "Add new word",
-        "random": "Random word"
+        "random": "Random word",
+        "contact": "Contact",
+        "about": "About"
     }
 }

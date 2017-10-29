@@ -32,7 +32,7 @@
 
 <script>
   export default {
-    name: 'Language',
+    name: 'LanguageSelector',
     data: function () {
       return {
         // ...

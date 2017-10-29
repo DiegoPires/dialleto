@@ -10,6 +10,15 @@
             "add": "Enviar"
         }
     },
+    "contact":
+    {
+        "name": "Nome",
+        "e-mail": "E-mail",
+        "subject": "Sujeito",
+        "message": "Mensagem",
+        "send" : "Enviar",
+        "cancel": "Cancelar"
+    },
     "languages": {
         "pt-br": "Português",
         "en-us": "Inglês",
@@ -17,6 +26,8 @@
     },
     "menu": {
         "add": "Adicionar nova palavra",
-        "random": "Palavra randomica"
+        "random": "Palavra randomica",
+        "contact": "Contato",
+        "about": "Sobre"
     }
 }
