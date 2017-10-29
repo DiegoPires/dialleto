@@ -41,7 +41,19 @@
       
       <div class="hero-body">
         <div class="container">
-          <router-view :key="key"></router-view>
+          
+          <transition
+            v-on:before-enter="beforeEnter"
+            v-on:after-enter="afterEnter"
+            v-on:before-leave="beforeLeave"
+            v-on:after-leave="afterLeave">
+            <router-view 
+              :key="key"
+              v-on:up="up"
+              v-on:down="down"
+              v-on:next="next"
+              v-on:previous="previous" />
+          </transition> 
 
           <vue-progress-bar></vue-progress-bar>
         </div>
@@ -53,10 +65,11 @@
             <div class="columns">
               <div class="column has-text-left">
                 <router-link to="/contact">{{ $t("menu.contact")}}</router-link> | 
-                <router-link to="/about">{{ $t("menu.about") }}</router-link>
+                <router-link to="/about">{{ $t("menu.about") }}</router-link> |
+                <a href="https://www.facebook.com/dialletoDictionary/" target="_blank"><span class="fa fa-facebook-official fa-lg"></span></a>
               </div>
               <div class="column has-text-right">
-                <strong>Dialleto</strong> by <a href="http://www.diegopires.com.br">Diego Silva Pires</a>.
+                <strong>Dialleto</strong> by <a href="http://www.diegopires.com.br" target=_blank>Diego Silva Pires</a>.
                 <span class="love">Made with <i class="fa fa-heart"></i> in Québec</span>
               </div>
             </div>
@@ -74,9 +87,16 @@ import LanguageSelector from './components/languageSelector'
 
 export default {
   name: 'app',
+  data () {
+    return {
+      transition: {
+        in: 'fadeInLeftBig',
+        out: 'fadeOutRightBig'
+      }
+    }
+  },
   computed: {
     key () {
-      console.log('key:' + JSON.stringify(this.$route.params))
       return this.$route.params.word !== undefined
         ? this.$route.params.word
         : this.$route.name
@@ -108,16 +128,60 @@ export default {
       this.$Progress.finish()
     })
   },
+  methods: {
+    beforeEnter: function (el) {
+      if (this.$route.params.word !== undefined) {
+        el.className = 'animated ' + this.transition.in
+      }
+    },
+    afterEnter: function (el) {
+      if (this.$route.params.word !== undefined) {
+        el.className = ''
+      }
+    },
+    beforeLeave: function (el) {
+      if (this.$route.params.word !== undefined) {
+        el.className = 'animated position_abs ' + this.transition.out
+      }
+    },
+    afterLeave: function (el) {
+      if (this.$route.params.word !== undefined) {
+        el.className = ''
+      }
+    },
+    up: function () {
+      this.transition.in = 'fadeInUpBig'
+      this.transition.out = 'fadeOutUpBig'
+    },
+    down: function () {
+      this.transition.in = 'fadeInDownBig'
+      this.transition.out = 'fadeOutDownBig'
+    },
+    next: function () {
+      this.transition.in = 'fadeInLeftBig'
+      this.transition.out = 'fadeOutRightBig'
+    },
+    previous: function () {
+      this.transition.in = 'fadeInRightBig'
+      this.transition.out = 'fadeOutLeftBig'
+    }
+  },
   components: {
     'language-selector': LanguageSelector
   }
 }
 </script>
 
+<style lang="css">
+@import "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css";  
+</style>
 <style lang="scss">
  
   $footer-background-color: hsl(141, 71%, 48%);
   @import 'src/assets/scss/custom.scss';
+  .position_abs {
+    position: absolute;
+  }
   .footer { 
     padding: 1rem 1.5rem 1rem; 
   }

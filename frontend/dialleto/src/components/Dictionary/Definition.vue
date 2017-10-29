@@ -1,17 +1,9 @@
 <template>
   
     <article class="media">
-      <figure class="media-left">
-        
-        <ul class="rating">
-            <li><a href="#"><span class="fa fa-chevron-up" aria-hidden="true"></span></a></li>
-            <li>0</li>
-            <li><a href="#"><span class="fa fa-chevron-down" aria-hidden="true"></span></a></li>
-        </ul>
-        
-      </figure>
+      
       <div class="media-content">
-        <div class="content">
+        <div class="content text">
           
           <p>{{definition.text}}</p>
           
@@ -19,15 +11,23 @@
         <nav class="level is-mobile">
           <div class="level-left">
 
-            <p class="level-item"><strong>Related:</strong></p>
-                
+            <a class="level-item">
+              <span class="fa fa-thumbs-up fa-lg"> </span> &nbsp; 123 
+            </a>
 
+            <a class="level-item">
+              <span class="fa fa-thumbs-down fa-lg"></span> &nbsp; 123 
+            </a>
+
+            <p class="level-item">|&nbsp;<strong>Related:</strong></p>
+            
             <router-link :to="{ params : { word : 'whatever' } }" class="level-item" style="border-bottom:2px solid red">
               Calice
             </router-link>
             <router-link to="word" style="border-bottom:2px solid blue">
               fuck
             </router-link>
+            
           </div>
         </nav>
       </div>
@@ -47,5 +47,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .text {
+    text-align: justify;
+  }
 </style>
