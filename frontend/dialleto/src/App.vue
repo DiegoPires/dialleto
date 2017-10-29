@@ -132,22 +132,26 @@ export default {
     beforeEnter: function (el) {
       if (this.$route.params.word !== undefined) {
         el.className = 'animated ' + this.transition.in
+      } else {
+        el.className = 'animated fadeIn'
       }
     },
     afterEnter: function (el) {
-      if (this.$route.params.word !== undefined) {
-        el.className = ''
-      }
+      // if (this.$route.params.word !== undefined) {
+      el.className = ''
+      // }
     },
     beforeLeave: function (el) {
       if (this.$route.params.word !== undefined) {
         el.className = 'animated position_abs ' + this.transition.out
+      } else {
+        el.className = 'animated position_abs fade-enter'
       }
     },
     afterLeave: function (el) {
-      if (this.$route.params.word !== undefined) {
-        el.className = ''
-      }
+      // if (this.$route.params.word !== undefined) {
+      el.className = ''
+      // }
     },
     up: function () {
       this.transition.in = 'fadeInUpBig'
@@ -185,5 +189,7 @@ export default {
   .footer { 
     padding: 1rem 1.5rem 1rem; 
   }
- 
+  .fade-enter {
+    opacity: 0
+  }
 </style>
