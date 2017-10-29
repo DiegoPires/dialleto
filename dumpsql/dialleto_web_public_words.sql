@@ -1,0 +1,13 @@
+INSERT INTO public.words (id, word, timestamp, created_by_id) VALUES (1, 'Dialleto', '2017-05-10 21:23:10.936000', null);
+INSERT INTO public.words (id, word, timestamp, created_by_id) VALUES (2, 'Caralho', '2017-05-14 21:42:13.900000', null);
+INSERT INTO public.words (id, word, timestamp, created_by_id) VALUES (3, 'Tabarnak', '2017-05-14 21:43:29.317000', null);
+INSERT INTO public.words (id, word, timestamp, created_by_id) VALUES (11, 'asd', '2017-05-24 14:02:42.091927', 1);
+INSERT INTO public.words (id, word, timestamp, created_by_id) VALUES (13, 'Fuck', '2017-06-04 15:06:10.886783', 2);
+INSERT INTO public.words (id, word, timestamp, created_by_id) VALUES (15, 'qwe', '2017-06-07 00:58:03.203808', 2);
+INSERT INTO public.words (id, word, timestamp, created_by_id) VALUES (16, 'zxc', '2017-06-07 01:00:39.186906', 2);
+INSERT INTO public.words (id, word, timestamp, created_by_id) VALUES (17, 'asdasd', '2017-06-07 01:03:18.147886', 2);
+INSERT INTO public.words (id, word, timestamp, created_by_id) VALUES (18, 'Couch Potato', '2017-06-07 01:09:56.520981', 2);
+INSERT INTO public.words (id, word, timestamp, created_by_id) VALUES (19, 'Chillin''', '2017-06-07 01:15:23.668228', 2);
+INSERT INTO public.words (id, word, timestamp, created_by_id) VALUES (20, 'Câlice', '2017-06-07 01:19:07.993917', 2);
+INSERT INTO public.words (id, word, timestamp, created_by_id) VALUES (21, 'Chiller', '2017-06-07 01:24:25.351441', 2);
+INSERT INTO public.words (id, word, timestamp, created_by_id) VALUES (22, 'Bite', '2017-06-07 01:55:44.946605', 2);

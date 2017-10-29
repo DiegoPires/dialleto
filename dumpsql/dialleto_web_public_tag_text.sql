@@ -1,0 +1,16 @@
+INSERT INTO public.tag_text (tag_id, text_id) VALUES (3, 1);
+INSERT INTO public.tag_text (tag_id, text_id) VALUES (3, 2);
+INSERT INTO public.tag_text (tag_id, text_id) VALUES (3, 3);
+INSERT INTO public.tag_text (tag_id, text_id) VALUES (3, 4);
+INSERT INTO public.tag_text (tag_id, text_id) VALUES (1, 5);
+INSERT INTO public.tag_text (tag_id, text_id) VALUES (1, 6);
+INSERT INTO public.tag_text (tag_id, text_id) VALUES (11, 42);
+INSERT INTO public.tag_text (tag_id, text_id) VALUES (11, 44);
+INSERT INTO public.tag_text (tag_id, text_id) VALUES (12, 46);
+INSERT INTO public.tag_text (tag_id, text_id) VALUES (13, 46);
+INSERT INTO public.tag_text (tag_id, text_id) VALUES (14, 46);
+INSERT INTO public.tag_text (tag_id, text_id) VALUES (13, 48);
+INSERT INTO public.tag_text (tag_id, text_id) VALUES (12, 48);
+INSERT INTO public.tag_text (tag_id, text_id) VALUES (15, 48);
+INSERT INTO public.tag_text (tag_id, text_id) VALUES (16, 50);
+INSERT INTO public.tag_text (tag_id, text_id) VALUES (17, 52);

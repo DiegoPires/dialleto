@@ -1,0 +1,1 @@
+INSERT INTO public.ratings (id, timestamp, text_id, created_by_id, rating) VALUES (55, '2017-06-07 01:56:48.931116', 50, 2, 1);

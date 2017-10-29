@@ -1,0 +1,22 @@
+{
+    "word": {
+        "add": {
+            "title": "Add word",
+            "word": "Word",
+            "definition": "Definition",
+            "example": "Example",
+            "tags": "Tags",
+            "language": "Language",
+            "add": "Submit"
+        }
+    },
+    "languages": {
+        "pt-br": "Portuguese",
+        "en-us": "English",
+        "fr-ca": "French"
+    },
+    "menu": {
+        "add": "Add new word",
+        "random": "Random word"
+    }
+}

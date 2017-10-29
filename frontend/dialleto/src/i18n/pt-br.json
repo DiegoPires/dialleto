@@ -1,0 +1,22 @@
+{
+    "word" : {
+        "add": {
+            "title": "Adicionar palavra",
+            "word": "Palavra",
+            "definition": "Definição",
+            "example": "Exemplo",
+            "tags": "Tags",
+            "language": "Língua",
+            "add": "Enviar"
+        }
+    },
+    "languages": {
+        "pt-br": "Português",
+        "en-us": "Inglês",
+        "fr-ca": "Francês"
+    },
+    "menu": {
+        "add": "Adicionar nova palavra",
+        "random": "Palavra randomica"
+    }
+}

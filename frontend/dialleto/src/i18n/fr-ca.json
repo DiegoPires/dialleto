@@ -1,0 +1,22 @@
+{
+    "word" : {
+        "add": {
+            "title": "Ajouter mot",
+            "word": "Mot",
+            "definition": "Definition",
+            "example": "Exemple",
+            "tags": "Tags",
+            "language": "Langage",
+            "add": "Envoyer"
+        }
+    },
+    "languages": {
+        "pt-br": "Portugais",
+        "en-us": "Anglais",
+        "fr-ca": "Français"
+    },
+    "menu": {
+        "add": "Ajouter nouveau mot",
+        "random": "Mot randomique"
+    }
+}

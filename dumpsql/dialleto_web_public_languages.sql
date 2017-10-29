@@ -1,0 +1,3 @@
+INSERT INTO public.languages (id, name, code, timestamp, created_by_id, color) VALUES (2, 'Portugues', 'pt-br', '2017-05-17 20:14:06.216000', 1, '009600');
+INSERT INTO public.languages (id, name, code, timestamp, created_by_id, color) VALUES (3, 'Francais', 'fr-ca', '2017-05-17 20:44:03.939000', 1, '000096');
+INSERT INTO public.languages (id, name, code, timestamp, created_by_id, color) VALUES (1, 'English', 'en-us', '2017-05-10 21:22:26.353000', 3, '960000');

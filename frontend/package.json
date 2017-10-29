@@ -1,0 +1,26 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Dialleto",
+  "main": "index.js",
+  "dependencies": {
+    "vue-cli": "^2.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/DiegoPires/dialleto.git"
+  },
+  "keywords": [
+    "dictionary"
+  ],
+  "author": "Diego Silva Pires",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DiegoPires/dialleto/issues"
+  },
+  "homepage": "https://github.com/DiegoPires/dialleto#readme"
+}

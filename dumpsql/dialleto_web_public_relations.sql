@@ -1,0 +1,12 @@
+INSERT INTO public.relations (id, timestamp, type_relation, created_by_id, text_id_from, text_id_to) VALUES (16, '2017-06-07 01:19:13.250073', null, null, 6, 46);
+INSERT INTO public.relations (id, timestamp, type_relation, created_by_id, text_id_from, text_id_to) VALUES (17, '2017-06-07 01:19:13.258944', null, null, 46, 6);
+INSERT INTO public.relations (id, timestamp, type_relation, created_by_id, text_id_from, text_id_to) VALUES (18, '2017-06-07 01:19:20.198283', null, null, 31, 46);
+INSERT INTO public.relations (id, timestamp, type_relation, created_by_id, text_id_from, text_id_to) VALUES (19, '2017-06-07 01:19:20.199664', null, null, 46, 31);
+INSERT INTO public.relations (id, timestamp, type_relation, created_by_id, text_id_from, text_id_to) VALUES (20, '2017-06-07 01:19:24.464399', null, null, 4, 46);
+INSERT INTO public.relations (id, timestamp, type_relation, created_by_id, text_id_from, text_id_to) VALUES (21, '2017-06-07 01:19:24.466018', null, null, 46, 4);
+INSERT INTO public.relations (id, timestamp, type_relation, created_by_id, text_id_from, text_id_to) VALUES (22, '2017-06-07 01:19:36.492439', null, null, 4, 31);
+INSERT INTO public.relations (id, timestamp, type_relation, created_by_id, text_id_from, text_id_to) VALUES (23, '2017-06-07 01:19:36.493948', null, null, 31, 4);
+INSERT INTO public.relations (id, timestamp, type_relation, created_by_id, text_id_from, text_id_to) VALUES (24, '2017-06-07 01:24:29.522482', null, null, 44, 48);
+INSERT INTO public.relations (id, timestamp, type_relation, created_by_id, text_id_from, text_id_to) VALUES (25, '2017-06-07 01:24:29.524299', null, null, 48, 44);
+INSERT INTO public.relations (id, timestamp, type_relation, created_by_id, text_id_from, text_id_to) VALUES (26, '2017-06-07 01:55:49.685016', null, null, 3, 50);
+INSERT INTO public.relations (id, timestamp, type_relation, created_by_id, text_id_from, text_id_to) VALUES (27, '2017-06-07 01:55:49.687211', null, null, 50, 3);
